@@ -6,62 +6,81 @@
     <title>Universidad en Línea América Latina</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* Puedes añadir pequeños ajustes de CSS aquí si es necesario */
         body {
-            font-family: 'Inter', sans-serif; /* Una fuente limpia y moderna */
+            font-family: 'Inter', sans-serif;
         }
     </style>
-     <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
-<body class="bg-gray-50">
+<body class="bg-gray-50 p-4 sm:p-6 lg:p-8">
 
-    <div class="container mx-auto max-w-7xl p-4 sm:p-6 lg:p-8">
+    <div class="container mx-auto max-w-7xl">
         
         <div class="bg-white rounded-lg shadow-xl overflow-hidden">
             
-            <div class="h-40 sm:h-56 bg-indigo-700"></div>
-
-            <div class="p-6 sm:p-8">
-                <div class="flex flex-col md:flex-row -mt-24 sm:-mt-32">
+            <!-- Encabezado / Banner Superior Indigo -->
+            <div class="bg-indigo-700 p-6 sm:p-8 lg:p-10">
+                <div class="flex flex-col md:flex-row gap-8">
                     
-                    <div class="w-full md:w-2/3">
-                        <div class="flex items-end space-x-5">
-                            <img class="h-24 w-24 sm:h-32 sm:w-32 rounded-full ring-4 ring-white" src="https://res.cloudinary.com/dn4m0kr7j/image/upload/v1789441495/WhatsApp_Image_2026-09-14_at_9.04.11_PM_bj4uka.jpg" alt="Logo ULAL">
-                            <h1 class="text-2xl sm:text-4xl font-bold text-gray-900">Universidad en Línea América Latina S.C.®</h1>
+                    <!-- Lado Izquierdo: Logo, Título y Párrafo introductorio -->
+                    <div class="w-full md:w-2/3 flex flex-col sm:flex-row gap-6 items-center sm:items-start">
+                        <img class="h-28 w-28 sm:h-36 sm:w-36 rounded-full ring-4 ring-white object-cover flex-shrink-0" src="https://res.cloudinary.com/dn4m0kr7j/image/upload/v1789441495/WhatsApp_Image_2026-09-14_at_9.04.11_PM_bj4uka.jpg" alt="Logo ULAL">
+                        
+                        <div class="text-center sm:text-left">
+                            <h1 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-3">Universidad en Línea<br>América Latina S.C.®</h1>
+                            <p class="text-indigo-100 text-sm sm:text-base leading-relaxed">
+                                En la Universidad en Línea de América Latina queremos que avances a tu propio ritmo desde la comodidad de tu hogar.
+                            </p>
                         </div>
-                        <p class="text-gray-600 mt-4">
-    En la Universidad en Línea de América Latina queremos que avances a tu propio ritmo desde la comodidad de tu hogar.<br><br>
-    Te damos la bienvenida a nuestra plataforma de agendamiento para clases personalizadas (1 a 1). Sigue estos sencillos pasos para programar tu sesión:<br><br>
-    <strong>Paso 1:</strong> Selecciona a tu profesor y verifica que corresponda a tu carrera o materia.<br>
-    <strong>Paso 2:</strong> Haz clic en el botón "Agendar servicio".<br>
-    <strong>Paso 3:</strong> Selecciona en el calendario el día y la hora que mejor te queden.<br>
-    <strong>Paso 4:</strong> Déjanos tus datos reales (correo y teléfono) y confirma que todo esté bien.<br>
-    <strong>Paso 5:</strong> ¡Listo! Realiza el pago de tu clase.<br>
-    <strong>Paso 6:</strong> Sigue de cerca las notificaciones que te llegarán por correo y WhatsApp.<br>                     
-</p>
                     </div>
 
-                    <div class="w-full md:w-1/3 mt-6 md:mt-0 md:pl-8">
-                        <ul class="space-y-3 text-white-700">
+                    <!-- Lado Derecho: Información de Contacto -->
+                    <div class="w-full md:w-1/3 flex flex-col justify-center">
+                        <ul class="space-y-4 text-indigo-100 text-sm sm:text-base">
+                            <!-- Ubicación -->
                             <li class="flex items-start">
-<svg class="w-6 h-6 text-white mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>                                <p>Calle 4a #6 Altos, Col. Centro | Chihuahua, México</p>
+                                <svg class="w-6 h-6 text-white mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                </svg>
+                                <span>Calle 4a #6 Altos, Col. Centro | Chihuahua, México</span>
                             </li>
+                            <!-- Teléfono (Con el SVG corregido) -->
                             <li class="flex items-start">
-<svg class="w-6 h-6 text-white mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
-</svg>
+                                <svg class="w-6 h-6 text-white mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                                </svg>
                                 <span>526142098479 - 526142123175</span>
                             </li>
-                            <li class="flex items-start">
-                                <svg class="w-6 h-6 text-green-500 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.894 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 4.315 1.731 6.086l.474.852-1.106 4.027 4.135-1.087.803.473z"></path></svg>
-                                <a href="https://api.whatsapp.com/send?phone=526142098479" class="font-semibold text-green-600 hover:text-green-700">¡Contáctanos por WhatsApp!</a>
+                            <!-- WhatsApp -->
+                            <li class="flex items-center">
+                                <svg class="w-6 h-6 text-green-400 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.894 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 4.315 1.731 6.086l.474.852-1.106 4.027 4.135-1.087.803.473z"></path>
+                                </svg>
+                                <a href="https://api.whatsapp.com/send?phone=526142098479" class="font-semibold text-white hover:text-green-300 transition-colors">¡Contáctanos por WhatsApp!</a>
                             </li>
                         </ul>
                     </div>
                 </div>
             </div>
+
+            <!-- Contenido Inferior (Fondo Blanco) -->
+            <div class="p-6 sm:p-8 lg:p-10 bg-white">
+                <p class="text-gray-600 leading-relaxed max-w-4xl">
+                    Te damos la bienvenida a nuestra plataforma de agendamiento para clases personalizadas (1 a 1). Sigue estos sencillos pasos para programar tu sesión:<br><br>
+                    <strong>Paso 1:</strong> Selecciona a tu profesor y verifica que corresponda a tu carrera o materia.<br>
+                    <strong>Paso 2:</strong> Haz clic en el botón "Agendar servicio".<br>
+                    <strong>Paso 3:</strong> Selecciona en el calendario el día y la hora que mejor te queden.<br>
+                    <strong>Paso 4:</strong> Déjanos tus datos reales (correo y teléfono) y confirma que todo esté bien.<br>
+                    <strong>Paso 5:</strong> ¡Listo! Realiza el pago de tu clase.<br>
+                    <strong>Paso 6:</strong> Sigue de cerca las notificaciones que te llegarán por correo y WhatsApp.
+                </p>
+            </div>
+            
+        </div>
+    </div>
 
             <div class="px-6 sm:px-8 py-6 border-t border-gray-200">
                 <h2 class="text-xl font-bold text-gray-800">Profesionales</h2>
@@ -102,7 +121,7 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 
                 <div class="bg-white rounded-lg shadow-lg p-6 flex flex-col">
-                    <h3 class="text-lg font-bold text-gray-900">Clases personalizadas de Licenciatura en Administración</h3>
+                    <h3 class="text-lg font-bold text-gray-900">Licenciatura en Administración</h3>
                     <div class="flex justify-between items-center mt-3">
                           <div class="text-center">
                         <img class="w-10 h-10 rounded-full mx-auto" src="https://res.cloudinary.com/dn4m0kr7j/image/upload/v1789439801/daniel-santiesteban_vukbut.png" alt="Daniel Santist...">
@@ -119,12 +138,12 @@
                 </div>
                 
                 <div class="bg-white rounded-lg shadow-lg p-6 flex flex-col">
-                    <h3 class="text-lg font-bold text-gray-900">Clases personalizadas de Licenciatura en Mercadotecnia</h3>
+                    <h3 class="text-lg font-bold text-gray-900">Licenciatura en Mercadotecnia</h3>
                     <div class="flex justify-between items-center mt-3">
                         <div class="text-center">
                         <img class="w-10 h-10 rounded-full mx-auto" src="https://res.cloudinary.com/dn4m0kr7j/image/upload/v1789439866/mtra-gabriela-bravo_rxkau9.png" alt="Gabriela Bravo">
                         <p class="text-sm mt-2 text-gray-700">Lic. Gabriela Bravo</p>
-                        <p class="text-sm mt-2 text-gray-700">Mercadotécnia y Pedagogía</p>
+                        <p class="text-sm mt-2 text-gray-700">Mercadotécnia</p>
                     </div>
                         <span class="text-sm text-gray-600">1 hrs | Videoconferencia</span>
                         <span class="text-xl font-bold text-indigo-700">$299</span>
@@ -136,7 +155,7 @@
                 </div>
 
                 <div class="bg-white rounded-lg shadow-lg p-6 flex flex-col">
-                    <h3 class="text-lg font-bold text-gray-900">(PREPARATORIA) Clases personalizadas de matemáticas y Ciencias Experimentales</h3>
+                    <h3 class="text-lg font-bold text-gray-900">Matemáticas y Ciencias Experimentales</h3>
                     <div class="flex justify-between items-center mt-3">
                         <div class="text-center">
                         <img class="w-10 h-10 rounded-full mx-auto" src="https://res.cloudinary.com/dn4m0kr7j/image/upload/v1789439707/profe-arturo-1_s3crm5.png" alt="Arturo Márquez">
@@ -153,12 +172,12 @@
                 </div>
 
                 <div class="bg-white rounded-lg shadow-lg p-6 flex flex-col">
-                    <h3 class="text-lg font-bold text-gray-900">Clases personalizadas de Licenciatura en Pedagogía</h3>
+                    <h3 class="text-lg font-bold text-gray-900">Licenciatura en Pedagogía</h3>
                     <div class="flex justify-between items-center mt-3">
                         <div class="text-center">
                         <img class="w-10 h-10 rounded-full mx-auto" src="https://res.cloudinary.com/dn4m0kr7j/image/upload/v1789439866/mtra-gabriela-bravo_rxkau9.png" alt="Gabriela Bravo">
                         <p class="text-sm mt-2 text-gray-700">Lic. Gabriela Bravo</p>
-                        <p class="text-sm mt-2 text-gray-700">Mercadotécnia y Pedagogía</p>
+                        <p class="text-sm mt-2 text-gray-700">Pedagogía</p>
                     </div>
                         <span class="text-sm text-gray-600">1 hrs | Videoconferencia</span>
                         <span class="text-xl font-bold text-indigo-700">$299</span>
@@ -170,7 +189,7 @@
                 </div>
 
                 <div class="bg-white rounded-lg shadow-lg p-6 flex flex-col">
-                    <h3 class="text-lg font-bold text-gray-900">Clases personalizadas de Ingenería Insdustrial</h3>
+                    <h3 class="text-lg font-bold text-gray-900">Ingenería Insdustrial</h3>
                     <div class="flex justify-between items-center mt-3">
                         <div class="text-center">
                         <img class="w-10 h-10 rounded-full mx-auto" src="https://res.cloudinary.com/dn4m0kr7j/image/upload/v1789439923/mario-caro-1_dobtoh.png" alt="Mario Caro">
@@ -187,7 +206,7 @@
                 </div>
 
                 <div class="bg-white rounded-lg shadow-lg p-6 flex flex-col">
-                    <h3 class="text-lg font-bold text-gray-900">(PREPARATORIA) Clases personalizadas de Español y Ciencias Sociales</h3>
+                    <h3 class="text-lg font-bold text-gray-900">Español y Ciencias Sociales</h3>
                     
                     <div class="flex justify-between items-center mt-3">
 <div class="text-center">
