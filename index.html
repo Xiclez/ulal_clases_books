@@ -566,6 +566,81 @@
     .persona-v2-tag.quien { color: #8FB8FF; }
     .persona-v2-tag.motivacion { color: var(--ulal-gold); }
     .persona-v2-block p { color: var(--text-gray); font-size: 0.9rem; line-height: 1.55; }
+
+    .territorio-section { padding: 100px 20px 90px 20px; text-align: center; position: relative; }
+
+    /* --- Radar animado --- */
+    .territorio-radar { position: relative; width: 140px; height: 140px; margin: 0 auto 30px auto; }
+    .territorio-radar-ring {
+        position: absolute; inset: 0; border-radius: 50%;
+        border: 1px solid rgba(244, 211, 94, 0.35);
+        animation: radar-ping 2.4s ease-out infinite;
+    }
+    .territorio-radar-ring:nth-child(2) { animation-delay: 0.8s; }
+    .territorio-radar-ring:nth-child(3) { animation-delay: 1.6s; }
+    @keyframes radar-ping {
+        0% { transform: scale(0.3); opacity: 0.9; }
+        100% { transform: scale(1); opacity: 0; }
+    }
+    .territorio-radar-core {
+        position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
+        width: 60px; height: 60px; border-radius: 50%;
+        background: linear-gradient(160deg, rgba(244,211,94,0.25), rgba(20,20,30,0.6));
+        border: 1px solid rgba(244,211,94,0.5);
+        display: flex; align-items: center; justify-content: center;
+        font-size: 1.4rem; color: var(--ulal-gold);
+        box-shadow: 0 0 30px rgba(244,211,94,0.35);
+    }
+
+    .territorio-section h2 { margin-bottom: 16px; }
+    .territorio-lead {
+        font-size: 1.1rem; max-width: 620px; margin: 0 auto 36px auto; color: var(--text-gray);
+    }
+
+    /* --- Chip de densidad --- */
+    .territorio-chip {
+        display: inline-flex; align-items: center; gap: 10px; padding: 12px 26px; border-radius: 50px;
+        background: rgba(244, 211, 94, 0.08); border: 1px solid rgba(244, 211, 94, 0.3);
+        color: #fff; font-size: 0.95rem; font-weight: 500; margin-bottom: 34px;
+    }
+    .territorio-chip strong { color: var(--ulal-gold); }
+
+    /* --- Bloque de garantía contractual --- */
+    .territorio-guarantee {
+        max-width: 720px; margin: 0 auto 40px auto; padding: 30px 34px; border-radius: 20px;
+        background: rgba(255,255,255,0.03); border: 1px solid var(--glass-border);
+        display: flex; gap: 18px; align-items: flex-start; text-align: left;
+    }
+    .territorio-guarantee i { font-size: 1.5rem; color: var(--ulal-gold); margin-top: 3px; flex-shrink: 0; }
+    .territorio-guarantee p { color: var(--text-white); line-height: 1.6; font-size: 1rem; }
+
+    .territorio-section .btn-cta { margin-bottom: 22px; }
+
+    /* --- Urgencia / disponibilidad --- */
+    .territorio-urgency {
+        display: flex; flex-direction: column; gap: 6px; align-items: center;
+    }
+    .territorio-urgency .u-line1 {
+        font-size: 0.95rem; color: #fff; font-weight: 500;
+    }
+    .territorio-urgency .u-line2 {
+        font-size: 0.8rem; color: var(--text-gray); font-style: italic;
+        display: inline-flex; align-items: center; gap: 8px;
+    }
+    .territorio-urgency .u-dot {
+        width: 7px; height: 7px; border-radius: 50%; background: #FF5F57;
+        box-shadow: 0 0 0 0 rgba(255,95,87,0.6); animation: u-pulse 1.6s infinite;
+    }
+    @keyframes u-pulse {
+        0% { box-shadow: 0 0 0 0 rgba(255,95,87,0.5); }
+        70% { box-shadow: 0 0 0 8px rgba(255,95,87,0); }
+        100% { box-shadow: 0 0 0 0 rgba(255,95,87,0); }
+    }
+
+    @media (max-width: 600px) {
+        .territorio-guarantee { flex-direction: column; text-align: center; }
+        .territorio-guarantee i { margin: 0 auto; }
+    }
     </style>
  
     <!-- Librerías GSAP -->
@@ -1056,15 +1131,38 @@
             </div>
         </section>
  
-        <section class="container" style="text-align: center; padding-top: 40px; padding-bottom: 80px;">
-            <h2 class="gs-up" style="font-size: clamp(2.5rem, 6vw, 4rem); margin-bottom: 20px;">Conviértete en Pionero</h2>
-            <p class="gs-up" style="font-size: 1.1rem; max-width: 600px; margin: 0 auto 40px auto; color: var(--text-gray);">
-                Asegura una zona exclusiva y accede a beneficios por ser uno de nuestros primeros socios.
-            </p>
-            <a href="https://chat.whatsapp.com/IUeFFiRZ8zrJWGsajKDqri" class="btn-cta green gs-up" onclick="fbq('track', 'Contact');" style="padding: 18px 40px;">
-                <i class="fab fa-whatsapp"></i> Unirse al Grupo
-            </a>
-        </section>
+        <section class="container territorio-section">
+    <div class="territorio-radar gs-up">
+        <div class="territorio-radar-ring"></div>
+        <div class="territorio-radar-ring"></div>
+        <div class="territorio-radar-ring"></div>
+        <div class="territorio-radar-core"><i class="fas fa-map-marker-alt"></i></div>
+    </div>
+
+    <h2 class="gs-up" style="font-size: clamp(2.5rem, 6vw, 4rem);">Conviértete en Pionero</h2>
+    <p class="territorio-lead gs-up">
+        Asegura una zona exclusiva y accede a beneficios por ser uno de nuestros primeros socios.
+    </p>
+
+    <div class="territorio-chip gs-up">
+        <i class="fas fa-school" style="color: var(--ulal-gold);"></i>
+        Solo <strong>una escuela presencial</strong> por cada <strong>500 mil habitantes</strong>
+    </div>
+
+    <div class="territorio-guarantee gs-up">
+        <i class="fas fa-file-contract"></i>
+        <p>Garantizamos <strong style="color: var(--ulal-gold);">por contrato</strong> que ningún otro franquiciado se instalará en tu territorio, protegiendo tu inversión y tu margen.</p>
+    </div>
+
+    <a href="https://chat.whatsapp.com/IUeFFiRZ8zrJWGsajKDqri" class="btn-cta green gs-up" onclick="fbq('track', 'Contact');" style="padding: 18px 40px;">
+        <i class="fab fa-whatsapp"></i> Unirse al Grupo
+    </a>
+
+    <div class="territorio-urgency gs-up">
+        <div class="u-line1">Consulta si tu ciudad aún está disponible.</div>
+        <div class="u-line2"><span class="u-dot"></span> Licencia exclusiva territorial en fase de selección.</div>
+    </div>
+</section>
  
         <footer>
             <div style="font-weight: 700; font-size: 1.5rem; letter-spacing: 2px; color: #fff;">ULAL</div>
