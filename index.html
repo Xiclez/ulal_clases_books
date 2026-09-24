@@ -3,1382 +3,234 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Franquicia Educativa ULAL | Invierte en el Futuro</title>
-    <meta name="description" content="Invierte en una franquicia educativa ULAL. Ofrecemos una solución completa para el crecimiento académico y profesional.">
-    <meta name="keywords" content="alta rentabilidad, franquicia educativa, ulal, inversion educativa">
-    <meta name="author" content="ULAL México">
-    <meta name="theme-color" content="#000000">
- 
-    <meta property="og:type" content="website">
-    <meta property="og:url" content="https://franquicias-ulal.vercel.app/">
-    <meta property="og:title" content="Franquicia Educativa ULAL | Invierte en el Futuro">
-    <meta property="og:description" content="Invierte en una franquicia educativa ULAL. Ofrecemos una solución completa para el crecimiento académico y profesional.">
-    <meta property="og:image" content="https://res.cloudinary.com/dsvopdjag/image/upload/v1767117660/Franquicias_ULAL_thmb_zvqhmc.jpg">
- 
-    <link rel="icon" type="image/png" href="https://res.cloudinary.com/dsvopdjag/image/upload/v1767117660/Franquicias_ULAL_thmb_zvqhmc.jpg">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
-    <script>
-        window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
-    </script>
-    <script defer src="/_vercel/insights/script.js"></script>
-    <script defer src="/_vercel/speed-insights/script.js"></script>
- 
-    <script>
-    !function(f,b,e,v,n,t,s)
-    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-    n.queue=[];t=b.createElement(e);t.async=!0;
-    t.src=v;s=b.getElementsByTagName(e)[0];
-    s.parentNode.insertBefore(t,s)}(window, document,'script',
-    'https://connect.facebook.net/en_US/fbevents.js');
-    fbq('init', '8552511888198488');
-    fbq('track', 'PageView');
-    </script>
-    <noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=8552511888198488&ev=PageView&noscript=1"/></noscript>
-    
+    <title>Universidad en Línea América Latina</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
-        /* =========================================================
-           PREMIUM ULAL / APPLE-INSPIRED SYSTEM
-           ========================================================= */
-        :root {
-            --ulal-gold: #F4D35E;   
-            --ulal-gold-hover: #E3C24D;
-            --text-white: #F5F5F7;
-            --text-gray: #A1A1A6;
-            --whatsapp-green: #25D366;
-            --glass-bg: rgba(20, 20, 30, 0.4);
-            --glass-border: rgba(255, 255, 255, 0.08);
-            --ease-apple: cubic-bezier(0.25, 1, 0.5, 1);
-        }
- 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
- 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
-            background-color: #000;
-            color: var(--text-white);
-            overflow-x: hidden;
-            -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
+            font-family: 'Inter', sans-serif;
         }
- 
-        a { text-decoration: none; }
- 
-        /* --- BACKGROUND SHADER PARA TODO EL SITIO --- */
-        #corporate-shader {
-            position: fixed;
-            inset: 0;
-            z-index: -2;
-            width: 100vw;
-            height: 100vh;
-            pointer-events: none;
-            opacity: 0.85; /* Ajuste sutil */
-        }
-        
-        /* Viñeta sutil para legibilidad de texto */
-        body::after {
-            content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
-            background: radial-gradient(circle at 50% 50%, transparent 20%, rgba(0,0,0,0.85) 100%);
-        }
- 
-        /* --- VIDEO & HERO --- */
-        #video-container {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100vh; z-index: 0; 
-            transition: width 0.6s var(--ease-apple), height 0.6s var(--ease-apple), border-radius 0.6s var(--ease-apple), transform 0.6s var(--ease-apple); 
-            overflow: hidden; background: #000; touch-action: none;
-        }
- 
-        .snap-animate {
-            transition: top 0.4s var(--ease-apple), left 0.4s var(--ease-apple), width 0.6s var(--ease-apple), height 0.6s var(--ease-apple) !important;
-        }
- 
-        #vimeo-iframe {
-            position: absolute; top: 50%; left: 50%; width: 100vw; height: 100vh;
-            transform: translate(-50%, -50%); pointer-events: none; object-fit: cover;
-            opacity: 0.7; /* Da más protagonismo a la web */
-        }
- 
-        @media (min-aspect-ratio: 16/9) { #vimeo-iframe { height: 56.25vw; } }
-        @media (max-aspect-ratio: 16/9) { #vimeo-iframe { width: 177.78vh; } }
- 
-        .hero-overlay {
-            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: linear-gradient(180deg, rgba(0,0,0,0.2) 0%, rgba(0,0,0,0.8) 100%);
-            z-index: 1; pointer-events: none;
-        }
- 
-        /* --- CONTROLES DE VIDEO --- */
-        .video-controls {
-            position: absolute; bottom: 40px; left: 50%; transform: translateX(-50%);
-            display: flex; gap: 20px; z-index: 1002; 
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px);
-            border: 1px solid var(--glass-border);
-            padding: 12px 30px; border-radius: 40px;
-            opacity: 0; transition: opacity 0.4s var(--ease-apple);
-        }
- 
-        #video-container:hover .video-controls, #video-container.mini-player .video-controls { opacity: 1; }
- 
-        .ctrl-btn {
-            background: transparent; border: none; color: white; font-size: 20px;
-            cursor: pointer; transition: transform 0.2s, color 0.3s;
-        }
-        .ctrl-btn:hover { color: var(--ulal-gold); transform: scale(1.1); }
- 
-        .sound-prompt {
-            position: absolute; bottom: 55px; left: 50%; transform: translateX(-50%);
-            background-color: var(--ulal-gold); color: #000; font-size: 11px;
-            font-weight: 700; padding: 6px 12px; border-radius: 8px; white-space: nowrap;
-            pointer-events: none; animation: float 2s infinite ease-in-out;
-        }
-        .sound-prompt::after {
-            content: ''; position: absolute; top: 100%; left: 50%; margin-left: -5px;
-            border-width: 5px; border-style: solid; border-color: var(--ulal-gold) transparent transparent transparent;
-        }
-        .sound-prompt.hidden { display: none !important; }
-        @keyframes float { 0%, 100% { transform: translate(-50%, 0); } 50% { transform: translate(-50%, -6px); } }
- 
-        .close-mini-btn {
-            position: absolute; top: -10px; right: -10px; background: rgba(255,255,255,0.2);
-            backdrop-filter: blur(10px); color: white; width: 28px; height: 28px;
-            border-radius: 50%; border: 1px solid rgba(255,255,255,0.3); font-size: 16px;
-            cursor: pointer; z-index: 1003; display: none; transition: background 0.3s;
-        }
-        .close-mini-btn:hover { background: rgba(255,255,255,0.4); }
- 
-        /* --- ESTADO MINI PLAYER --- */
-        #video-container.mini-player {
-            width: 320px; height: 180px; z-index: 9999; border-radius: 16px;
-            border: 1px solid var(--glass-border); box-shadow: 0 20px 50px rgba(0,0,0,0.8);
-            cursor: grab; overflow: visible;
-        }
-        #video-container.mini-player:active { cursor: grabbing; }
-        #video-container.mini-player.is-portrait { width: 140px; height: 248px; }
-        #video-container.mini-player #vimeo-iframe { width: 100% !important; height: 100% !important; position: absolute !important; opacity: 1; }
-        #video-container.mini-player .hero-overlay { opacity: 0; }
-        #video-container.mini-player .close-mini-btn { display: flex; align-items: center; justify-content: center; }
-        #video-container.mini-player .video-controls { bottom: 15px; padding: 8px 20px; background: rgba(0,0,0,0.6); }
- 
-        /* --- ESTRUCTURA PRINCIPAL (GLASSMORPHISM) --- */
-        .hero-text-wrapper {
-            position: relative; height: 100vh; display: flex; flex-direction: column;
-            justify-content: center; align-items: center; text-align: center; z-index: 2; padding: 20px; pointer-events: none;
-        }
-        .hero-text-wrapper > * { pointer-events: auto; }
-        
-        .hero-text-wrapper h1 {
-            font-size: clamp(3.5rem, 8vw, 6.5rem); letter-spacing: -0.04em; font-weight: 700;
-            line-height: 1; margin-bottom: 20px;
-            background: linear-gradient(135deg, #fff 0%, #a5a5a5 100%);
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            text-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        }
-        
-        .hero-subtitle { font-size: clamp(1.1rem, 2vw, 1.4rem); color: var(--text-gray); margin-bottom: 40px; max-width: 600px; font-weight: 400; letter-spacing: -0.01em; }
- 
-        /* Fondo transparente para revelar el shader global */
-        .main-content {
-            position: relative; z-index: 10;
-            background: transparent; /* Permite ver el WebGL */
-            padding-bottom: 80px;
-        }
- 
-        .container { max-width: 1100px; margin: 0 auto; padding: 100px 20px; }
-        
-        .section-kicker {
-            color: var(--ulal-gold); font-size: 0.8rem; font-weight: 600;
-            letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 12px; text-align: center;
-        }
- 
-        .container h2 {
-            font-size: clamp(2.2rem, 5vw, 3.5rem); text-align: center; margin-bottom: 50px;
-            font-weight: 700; letter-spacing: -0.03em; color: #fff;
-        }
- 
-        /* --- BOTONES PREMIUM --- */
-        .btn-cta {
-            background: rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px); -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2); color: white;
-            padding: 16px 32px; font-size: 1.1rem; border-radius: 30px; font-weight: 500;
-            display: inline-flex; align-items: center; gap: 12px; transition: all 0.4s var(--ease-apple);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.2);
-            overflow: hidden; position: relative;
-        }
-        .btn-cta.green { background: linear-gradient(135deg, var(--whatsapp-green), #1bb957); border-color: transparent; }
-        .btn-cta:hover { transform: translateY(-4px) scale(1.02); box-shadow: 0 15px 30px rgba(0,0,0,0.4); border-color: rgba(255, 255, 255, 0.4); }
-        .btn-cta::after {
-            content: ""; position: absolute; top: 0; left: -100%; width: 50%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: left 0.7s ease;
-        }
-        .btn-cta:hover::after { left: 100%; }
- 
-        /* --- TARJETAS PREMIUM GLASSMORPHISM --- */
-        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-        
-        .card, .glass-panel {
-            background: var(--glass-bg);
-            backdrop-filter: blur(24px) saturate(150%); -webkit-backdrop-filter: blur(24px) saturate(150%);
-            border: 1px solid var(--glass-border); padding: 40px 30px; border-radius: 24px;
-            text-align: center; transition: transform 0.5s var(--ease-apple), border-color 0.4s;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4), inset 0 1px 0 rgba(255,255,255,0.1);
-        }
-        .card:hover { border-color: rgba(244, 211, 94, 0.4); }
-        .card i { font-size: 2.5rem; color: var(--ulal-gold); margin-bottom: 20px; }
-        .card h3 { font-size: 1.3rem; margin-bottom: 12px; font-weight: 600; color: #fff; }
-        .card p { color: var(--text-gray); line-height: 1.6; font-size: 0.95rem; }
- 
-        .glass-panel { padding: 50px; display: flex; flex-wrap: wrap; gap: 40px; align-items: center; text-align: left; margin-top: 20px; }
-        .glass-panel ul { list-style: none; line-height: 2.2; color: var(--text-white); font-size: 1.05rem; }
-        .glass-panel ul i { color: var(--ulal-gold); margin-right: 12px; }
- 
-        /* --- CAROUSEL PREMIUM --- */
-        .carousel-container { position: relative; max-width: 800px; margin: 0 auto; padding: 60px 40px; }
-        .testimonial-slide { display: none; text-align: center; animation: fadeApple 1s var(--ease-apple); }
-        @keyframes fadeApple { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
-        
-        .grad-img { width: 90px; height: 90px; border-radius: 50%; object-fit: cover; border: 2px solid var(--glass-border); margin-bottom: 20px; box-shadow: 0 15px 30px rgba(0,0,0,0.5); }
-        .testimonial-text { font-size: 1.25rem; font-style: italic; color: var(--text-white); margin-bottom: 20px; font-weight: 300; line-height: 1.5; }
-        .testimonial-author { font-weight: 600; color: var(--ulal-gold); }
-        .testimonial-role { font-size: 0.85rem; color: var(--text-gray); }
- 
-        .prev, .next { cursor: pointer; position: absolute; top: 50%; transform: translateY(-50%); color: #fff; font-size: 1.2rem; padding: 15px; background: rgba(255,255,255,0.05); border-radius: 50%; border: 1px solid var(--glass-border); backdrop-filter: blur(10px); transition: all 0.3s; }
-        .prev { left: -20px; } .next { right: -20px; }
-        .prev:hover, .next:hover { background: rgba(255,255,255,0.15); color: var(--ulal-gold); scale: 1.1; }
-        
-        .dots-container { text-align: center; margin-top: 30px; }
-        .dot { cursor: pointer; height: 8px; width: 8px; margin: 0 6px; background-color: rgba(255,255,255,0.2); border-radius: 50%; display: inline-block; transition: all 0.3s; }
-        .dot.active { background-color: var(--ulal-gold); transform: scale(1.3); }
- 
-        /* Footer */
-        footer { border-top: 1px solid var(--glass-border); padding: 40px 20px; text-align: center; background: rgba(0,0,0,0.5); backdrop-filter: blur(20px); }
- 
-        @media (max-width: 768px) {
-            .prev { left: 5px; } .next { right: 5px; }
-            .glass-panel { padding: 30px; }
-        }
- 
-        /* =========================================================
-           NUEVAS SECCIONES — ELEMENTOS DIFERENCIADOS
-           ========================================================= */
- 
-        /* --- FRANJA DE ESTADÍSTICAS --- */
-        .stats-strip {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-            gap: 20px; max-width: 1100px; margin: 0 auto; padding: 0 20px;
-        }
-        .stat-item {
-            text-align: center; padding: 30px 15px; border-radius: 20px;
-            background: linear-gradient(180deg, rgba(244,211,94,0.08), rgba(255,255,255,0.02));
-            border: 1px solid var(--glass-border);
-        }
-        .stat-item .stat-number {
-            font-size: clamp(2.2rem, 4vw, 3rem); font-weight: 700; letter-spacing: -0.03em;
-            color: var(--ulal-gold); line-height: 1;
-        }
-        .stat-item .stat-label { margin-top: 10px; color: var(--text-gray); font-size: 0.85rem; text-transform: uppercase; letter-spacing: 0.05em; }
- 
-        /* --- FILAS DE CARACTERÍSTICAS (SISTEMA DE COBROS) --- */
-        .feature-row-list { display: flex; flex-direction: column; gap: 18px; max-width: 900px; margin: 0 auto; }
-        .feature-row {
-            display: flex; align-items: center; gap: 26px; padding: 26px 32px; border-radius: 20px;
-            background: var(--glass-bg); border: 1px solid var(--glass-border);
-            transition: transform 0.4s var(--ease-apple), border-color 0.4s;
-        }
-        .feature-row:hover { transform: translateX(10px); border-color: rgba(244, 211, 94, 0.35); }
-        .feature-row .fr-icon {
-            flex-shrink: 0; width: 62px; height: 62px; border-radius: 16px;
-            background: rgba(244, 211, 94, 0.12); display: flex; align-items: center; justify-content: center;
-            font-size: 1.5rem; color: var(--ulal-gold);
-        }
-        .feature-row h4 { font-size: 1.15rem; margin-bottom: 6px; color: #fff; font-weight: 600; }
-        .feature-row p { color: var(--text-gray); font-size: 0.95rem; line-height: 1.5; }
- 
-        /* --- BADGES DE RESPALDO --- */
-        .badge-strip { display: flex; flex-wrap: wrap; justify-content: center; gap: 16px; }
-        .trust-badge {
-            display: inline-flex; align-items: center; gap: 10px; padding: 14px 24px; border-radius: 50px;
-            background: rgba(255,255,255,0.05); border: 1px solid var(--glass-border); font-size: 0.9rem; color: var(--text-white);
-        }
-        .trust-badge i { color: var(--ulal-gold); }
- 
-        /* --- CALLOUT DE DATO / ESTADÍSTICA DESTACADA --- */
-        .stat-callout {
-            max-width: 900px; margin: 40px auto 0 auto; padding: 34px 40px; border-radius: 24px;
-            background: linear-gradient(120deg, rgba(244,211,94,0.1), rgba(244,211,94,0.02));
-            border: 1px solid rgba(244,211,94,0.25); display: flex; gap: 24px; align-items: flex-start;
-        }
-        .stat-callout i { font-size: 1.8rem; color: var(--ulal-gold); margin-top: 4px; }
-        .stat-callout p { color: var(--text-white); line-height: 1.6; font-size: 1.02rem; }
- 
-        /* --- GRID DE PERFILES --- */
-        .persona-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 24px; }
-        .persona-card {
-            position: relative; padding: 34px 28px 28px 28px; border-radius: 22px; overflow: hidden;
-            background: linear-gradient(160deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01));
-            border: 1px solid var(--glass-border); transition: transform 0.4s var(--ease-apple), border-color 0.4s;
-        }
-        .persona-card::before {
-            content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 4px;
-            background: linear-gradient(90deg, var(--ulal-gold), transparent);
-        }
-        .persona-card:hover { transform: translateY(-8px); border-color: rgba(244, 211, 94, 0.4); }
-        .persona-emoji { font-size: 2.3rem; margin-bottom: 16px; display: block; }
-        .persona-card h4 { font-size: 1.15rem; color: #fff; font-weight: 600; margin-bottom: 10px; }
-        .persona-card p { color: var(--text-gray); font-size: 0.92rem; line-height: 1.55; }
- 
-        /* --- TARJETA DE PRECIO / OFERTA --- */
-        .price-card {
-            max-width: 560px; margin: 0 auto; text-align: center; padding: 55px 40px; border-radius: 28px;
-            background: linear-gradient(180deg, rgba(244,211,94,0.1), rgba(20,20,30,0.6));
-            border: 1px solid rgba(244, 211, 94, 0.35);
-            box-shadow: 0 30px 60px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.1);
-            position: relative;
-        }
-        .price-ribbon {
-            position: absolute; top: -16px; left: 50%; transform: translateX(-50%);
-            background: linear-gradient(135deg, var(--whatsapp-green), #1bb957); color: #fff; font-weight: 700;
-            font-size: 0.75rem; letter-spacing: 0.08em; text-transform: uppercase; padding: 8px 20px; border-radius: 30px;
-            box-shadow: 0 8px 20px rgba(0,0,0,0.4);
-        }
-        .price-card .price-tag { font-size: clamp(3rem, 7vw, 4.2rem); font-weight: 700; color: var(--ulal-gold); letter-spacing: -0.03em; margin: 20px 0 4px 0; }
-        .price-card .price-note { color: var(--text-gray); font-size: 0.95rem; margin-bottom: 26px; }
-        .price-perks { list-style: none; text-align: left; max-width: 360px; margin: 0 auto 30px auto; line-height: 2.1; }
-        .price-perks i { color: var(--ulal-gold); margin-right: 10px; }
- 
-        /* --- ACORDEÓN FAQ --- */
-        .accordion { max-width: 800px; margin: 0 auto; display: flex; flex-direction: column; gap: 14px; }
-        .accordion-item {
-            border: 1px solid var(--glass-border); border-radius: 16px; background: var(--glass-bg);
-            overflow: hidden; transition: border-color 0.4s;
-        }
-        .accordion-item.active { border-color: rgba(244, 211, 94, 0.4); }
-        .accordion-question {
-            display: flex; justify-content: space-between; align-items: center; gap: 20px;
-            padding: 22px 28px; cursor: pointer; font-weight: 600; color: #fff; font-size: 1.02rem;
-        }
-        .accordion-question i { color: var(--ulal-gold); transition: transform 0.4s var(--ease-apple); flex-shrink: 0; }
-        .accordion-item.active .accordion-question i { transform: rotate(45deg); }
-        .accordion-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s var(--ease-apple); }
-        .accordion-answer div { padding: 0 28px 24px 28px; color: var(--text-gray); line-height: 1.6; font-size: 0.95rem; }
- 
-        @media (max-width: 768px) {
-            .feature-row { flex-direction: column; text-align: center; padding: 26px 22px; }
-            .feature-row:hover { transform: translateY(-6px); }
-            .stat-callout { flex-direction: column; padding: 28px; }
-        }
-
-    .acc-section { padding: 100px 20px; position: relative; }
-    .acc-wrap { max-width: 1100px; margin: 0 auto; }
-
-    .acc-head { text-align: center; margin-bottom: 60px; }
-    .acc-kicker {
-        display: inline-flex; align-items: center; gap: 8px;
-        color: #6EE7E0; font-size: 0.8rem; font-weight: 600;
-        letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 14px;
-    }
-    .acc-kicker .acc-dot {
-        width: 8px; height: 8px; border-radius: 50%; background: #6EE7E0;
-        box-shadow: 0 0 0 0 rgba(110,231,224,0.6); animation: acc-pulse 1.8s infinite;
-    }
-    @keyframes acc-pulse {
-        0% { box-shadow: 0 0 0 0 rgba(110,231,224,0.5); }
-        70% { box-shadow: 0 0 0 10px rgba(110,231,224,0); }
-        100% { box-shadow: 0 0 0 0 rgba(110,231,224,0); }
-    }
-    .acc-head h2 { font-size: clamp(2rem, 4.5vw, 3rem); font-weight: 700; letter-spacing: -0.03em; color: #fff; margin-bottom: 14px; }
-    .acc-head p { color: #A1A1A6; max-width: 620px; margin: 0 auto; font-size: 1.05rem; line-height: 1.6; }
-
-    /* --- Ventanas tipo terminal --- */
-    .acc-panels {
-        display: grid; grid-template-columns: 1fr auto 1fr; gap: 24px; align-items: center;
-        margin-bottom: 50px;
-    }
-    .acc-panel {
-        background: #0B0B12; border: 1px solid rgba(255,255,255,0.08); border-radius: 16px;
-        overflow: hidden; box-shadow: 0 25px 50px rgba(0,0,0,0.5);
-    }
-    .acc-panel-bar {
-        display: flex; align-items: center; gap: 8px; padding: 12px 16px;
-        background: rgba(255,255,255,0.03); border-bottom: 1px solid rgba(255,255,255,0.06);
-    }
-    .acc-panel-bar span { width: 10px; height: 10px; border-radius: 50%; }
-    .acc-panel-bar span:nth-child(1) { background: #FF5F57; }
-    .acc-panel-bar span:nth-child(2) { background: #FEBC2E; }
-    .acc-panel-bar span:nth-child(3) { background: #28C840; }
-    .acc-panel-bar small { margin-left: 10px; color: #666; font-family: monospace; font-size: 0.75rem; }
-
-    .acc-panel-body { padding: 28px 26px; }
-    .acc-panel-body .acc-role-icon {
-        width: 48px; height: 48px; border-radius: 12px; display: flex; align-items: center; justify-content: center;
-        font-size: 1.3rem; margin-bottom: 16px;
-    }
-    .acc-panel.secretary .acc-role-icon { background: rgba(110,231,224,0.12); color: #6EE7E0; }
-    .acc-panel.director .acc-role-icon { background: rgba(244,211,94,0.12); color: #F4D35E; }
-    .acc-panel-body h3 { color: #fff; font-size: 1.25rem; font-weight: 600; margin-bottom: 10px; }
-    .acc-panel-body p { color: #A1A1A6; font-size: 0.93rem; line-height: 1.6; margin-bottom: 16px; }
-    .acc-tag-list { display: flex; flex-wrap: wrap; gap: 8px; }
-    .acc-tag {
-        font-family: monospace; font-size: 0.75rem; padding: 5px 10px; border-radius: 6px;
-        background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08); color: #ccc;
-    }
-
-    .acc-connector { display: flex; flex-direction: column; align-items: center; gap: 6px; color: #444; }
-    .acc-connector .acc-line { width: 2px; height: 40px; background: linear-gradient(180deg, #6EE7E0, #F4D35E); opacity: 0.5; }
-    .acc-connector i { color: #F4D35E; font-size: 1.1rem; }
-
-    /* --- Mockup de celular: negocio en la palma de tu mano --- */
-    .acc-phone-block {
-        display: flex; align-items: center; gap: 50px; flex-wrap: wrap; justify-content: center;
-        background: linear-gradient(135deg, rgba(244,211,94,0.06), rgba(110,231,224,0.04));
-        border: 1px solid rgba(255,255,255,0.08); border-radius: 28px; padding: 50px 40px;
-    }
-    .acc-phone {
-        width: 190px; height: 380px; border-radius: 32px; background: #0B0B12;
-        border: 6px solid #1c1c22; box-shadow: 0 30px 60px rgba(0,0,0,0.6); padding: 18px 14px;
-        flex-shrink: 0; position: relative;
-    }
-    .acc-phone::before {
-        content: ""; position: absolute; top: 8px; left: 50%; transform: translateX(-50%);
-        width: 50px; height: 6px; border-radius: 4px; background: #1c1c22;
-    }
-    .acc-phone-screen { margin-top: 16px; display: flex; flex-direction: column; gap: 10px; }
-    .acc-metric {
-        background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.08);
-        border-radius: 10px; padding: 10px 12px;
-    }
-    .acc-metric span { display: block; color: #777; font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.05em; }
-    .acc-metric strong { color: #F4D35E; font-size: 1rem; }
-
-    .acc-phone-text { flex: 1; min-width: 260px; }
-    .acc-phone-text h3 { color: #fff; font-size: 1.5rem; font-weight: 700; margin-bottom: 14px; letter-spacing: -0.02em; }
-    .acc-phone-text p { color: #A1A1A6; font-size: 1rem; line-height: 1.7; }
-
-    @media (max-width: 820px) {
-        .acc-panels { grid-template-columns: 1fr; }
-        .acc-connector { flex-direction: row; }
-        .acc-connector .acc-line { width: 40px; height: 2px; }
-    }
-
-    .becado-section { padding: 100px 20px; }
-    .becado-wrap {
-        max-width: 1100px; margin: 0 auto; display: flex; align-items: center;
-        gap: 60px; flex-wrap: wrap;
-    }
-
-    /* --- Columna del sello / diploma --- */
-    .becado-seal-col { flex: 1; min-width: 280px; display: flex; justify-content: center; }
-    .becado-seal {
-        position: relative; width: 260px; height: 260px; border-radius: 50%;
-        background: radial-gradient(circle at 35% 30%, rgba(244,211,94,0.18), rgba(0,0,0,0.2) 70%);
-        border: 2px dashed rgba(244,211,94,0.4);
-        display: flex; align-items: center; justify-content: center;
-        animation: becado-spin 30s linear infinite;
-    }
-    @keyframes becado-spin { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
-    .becado-seal-inner {
-        width: 200px; height: 200px; border-radius: 50%;
-        background: linear-gradient(160deg, #1a1a22, #0a0a0f);
-        border: 1px solid rgba(255,255,255,0.1);
-        display: flex; flex-direction: column; align-items: center; justify-content: center;
-        text-align: center; box-shadow: 0 20px 50px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.08);
-        animation: becado-spin-rev 30s linear infinite;
-    }
-    @keyframes becado-spin-rev { from { transform: rotate(0deg); } to { transform: rotate(-360deg); } }
-    .becado-seal-inner i { font-size: 2.4rem; color: var(--ulal-gold, #F4D35E); margin-bottom: 8px; }
-    .becado-seal-inner span { font-size: 0.72rem; letter-spacing: 0.1em; text-transform: uppercase; color: #ccc; font-weight: 600; }
-    .becado-seal-inner small { font-size: 0.62rem; color: #777; margin-top: 4px; }
-    .becado-ribbon {
-        position: absolute; bottom: -14px; left: 50%; transform: translateX(-50%);
-        background: linear-gradient(135deg, #F4D35E, #E3C24D); color: #000; font-weight: 700;
-        font-size: 0.7rem; letter-spacing: 0.05em; padding: 8px 18px; border-radius: 30px;
-        white-space: nowrap; box-shadow: 0 10px 20px rgba(0,0,0,0.4);
-    }
-
-    /* --- Columna de texto y pasos --- */
-    .becado-text-col { flex: 1.3; min-width: 320px; }
-    .becado-kicker {
-        color: var(--ulal-gold, #F4D35E); font-size: 0.8rem; font-weight: 600;
-        letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 12px;
-    }
-    .becado-text-col h2 {
-        font-size: clamp(1.8rem, 4vw, 2.6rem); font-weight: 700; letter-spacing: -0.02em;
-        color: #fff; line-height: 1.2; margin-bottom: 18px;
-    }
-    .becado-text-col > p.becado-intro {
-    color: #A1A1A6; 
-    font-size: 1.02rem; 
-    line-height: 1.65; 
-    margin-bottom: 34px;
-    text-align: justify; /* Propiedad añadida */
-}
-
-    .becado-steps { list-style: none; display: flex; flex-direction: column; gap: 22px; }
-    .becado-step { display: flex; gap: 18px; }
-    .becado-step-num {
-        flex-shrink: 0; width: 38px; height: 38px; border-radius: 50%;
-        border: 1px solid rgba(244,211,94,0.4); color: var(--ulal-gold, #F4D35E);
-        display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 0.95rem;
-    }
-    .becado-step h4 { color: #fff; font-size: 1.05rem; font-weight: 600; margin-bottom: 4px; }
-    .becado-step p { color: #A1A1A6; font-size: 0.92rem; line-height: 1.55; }
-
-    @media (max-width: 700px) {
-        .becado-wrap { gap: 40px; }
-        .becado-seal { width: 210px; height: 210px; }
-        .becado-seal-inner { width: 160px; height: 160px; }
-    }
-
-        .becado-ribbon-top {
-        position: absolute; top: -14px; left: 50%; transform: translateX(-50%);
-        background: linear-gradient(135deg, #F4D35E, #E3C24D); color: #000; font-weight: 700;
-        font-size: 0.7rem; letter-spacing: 0.05em; padding: 8px 18px; border-radius: 30px;
-        white-space: nowrap; box-shadow: 0 10px 20px rgba(0,0,0,0.4);
-    }
-
-    .persona-card-v2 {
-        display: flex; flex-direction: column; gap: 0; padding: 0; overflow: hidden;
-        border-radius: 22px; background: linear-gradient(160deg, rgba(255,255,255,0.04), rgba(255,255,255,0.01));
-        border: 1px solid var(--glass-border); transition: transform 0.4s var(--ease-apple), border-color 0.4s;
-        position: relative;
-    }
-    .persona-card-v2::before {
-        content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 4px;
-        background: linear-gradient(90deg, var(--ulal-gold), transparent);
-    }
-    .persona-card-v2:hover { transform: translateY(-8px); border-color: rgba(244, 211, 94, 0.4); }
-
-    .persona-v2-head { padding: 30px 28px 20px 28px; }
-    .persona-v2-head .persona-emoji { font-size: 2.1rem; margin-bottom: 12px; display: block; }
-    .persona-v2-head h4 { font-size: 1.1rem; color: #fff; font-weight: 600; line-height: 1.3; }
-
-    .persona-v2-block { padding: 18px 28px; border-top: 1px solid rgba(255,255,255,0.07); }
-    .persona-v2-block:last-child { background: rgba(244, 211, 94, 0.04); }
-
-    .persona-v2-tag {
-        display: inline-flex; align-items: center; gap: 6px; font-size: 0.68rem; font-weight: 700;
-        letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 8px;
-    }
-    .persona-v2-tag.quien { color: #8FB8FF; }
-    .persona-v2-tag.motivacion { color: var(--ulal-gold); }
-    .persona-v2-block p { color: var(--text-gray); font-size: 0.9rem; line-height: 1.55; }
-
-    .territorio-section { padding: 100px 20px 90px 20px; text-align: center; position: relative; }
-
-    /* --- Radar animado --- */
-    .territorio-radar { position: relative; width: 140px; height: 140px; margin: 0 auto 30px auto; }
-    .territorio-radar-ring {
-        position: absolute; inset: 0; border-radius: 50%;
-        border: 1px solid rgba(244, 211, 94, 0.35);
-        animation: radar-ping 2.4s ease-out infinite;
-    }
-    .territorio-radar-ring:nth-child(2) { animation-delay: 0.8s; }
-    .territorio-radar-ring:nth-child(3) { animation-delay: 1.6s; }
-    @keyframes radar-ping {
-        0% { transform: scale(0.3); opacity: 0.9; }
-        100% { transform: scale(1); opacity: 0; }
-    }
-    .territorio-radar-core {
-        position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-        width: 60px; height: 60px; border-radius: 50%;
-        background: linear-gradient(160deg, rgba(244,211,94,0.25), rgba(20,20,30,0.6));
-        border: 1px solid rgba(244,211,94,0.5);
-        display: flex; align-items: center; justify-content: center;
-        font-size: 1.4rem; color: var(--ulal-gold);
-        box-shadow: 0 0 30px rgba(244,211,94,0.35);
-    }
-
-    .territorio-section h2 { margin-bottom: 16px; }
-    .territorio-lead {
-        font-size: 1.1rem; max-width: 620px; margin: 0 auto 36px auto; color: var(--text-gray);
-    }
-
-    /* --- Chip de densidad --- */
-    .territorio-chip {
-        display: inline-flex; align-items: center; gap: 10px; padding: 12px 26px; border-radius: 50px;
-        background: rgba(244, 211, 94, 0.08); border: 1px solid rgba(244, 211, 94, 0.3);
-        color: #fff; font-size: 0.95rem; font-weight: 500; margin-bottom: 34px;
-    }
-    .territorio-chip strong { color: var(--ulal-gold); }
-
-    /* --- Bloque de garantía contractual --- */
-    .territorio-guarantee {
-        max-width: 720px; margin: 0 auto 40px auto; padding: 30px 34px; border-radius: 20px;
-        background: rgba(255,255,255,0.03); border: 1px solid var(--glass-border);
-        display: flex; gap: 18px; align-items: flex-start; text-align: left;
-    }
-    .territorio-guarantee i { font-size: 1.5rem; color: var(--ulal-gold); margin-top: 3px; flex-shrink: 0; }
-    .territorio-guarantee p { color: var(--text-white); line-height: 1.6; font-size: 1rem; }
-
-    .territorio-section .btn-cta { margin-bottom: 22px; }
-
-    /* --- Urgencia / disponibilidad --- */
-    .territorio-urgency {
-        display: flex; flex-direction: column; gap: 6px; align-items: center;
-    }
-    .territorio-urgency .u-line1 {
-        font-size: 0.95rem; color: #fff; font-weight: 500;
-    }
-    .territorio-urgency .u-line2 {
-        font-size: 0.8rem; color: var(--text-gray); font-style: italic;
-        display: inline-flex; align-items: center; gap: 8px;
-    }
-    .territorio-urgency .u-dot {
-        width: 7px; height: 7px; border-radius: 50%; background: #FF5F57;
-        box-shadow: 0 0 0 0 rgba(255,95,87,0.6); animation: u-pulse 1.6s infinite;
-    }
-    @keyframes u-pulse {
-        0% { box-shadow: 0 0 0 0 rgba(255,95,87,0.5); }
-        70% { box-shadow: 0 0 0 8px rgba(255,95,87,0); }
-        100% { box-shadow: 0 0 0 0 rgba(255,95,87,0); }
-    }
-
-    @media (max-width: 600px) {
-        .territorio-guarantee { flex-direction: column; text-align: center; }
-        .territorio-guarantee i { margin: 0 auto; }
-    }
     </style>
- 
-    <!-- Librerías GSAP -->
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
- 
-<body>
-    <!-- SHADER EN EL FONDO DE TODO EL SITIO -->
-    <canvas id="corporate-shader" aria-hidden="true"></canvas>
- 
-    <div id="video-container">
-        <button class="close-mini-btn" onclick="closeMiniPlayer()"><i class="fas fa-times"></i></button>
-        <div id="vimeo-wrapper"></div>
-        <div class="hero-overlay"></div>
-        <div class="video-controls">
-            <button class="ctrl-btn" onclick="togglePlay()"><i id="playIcon" class="fas fa-pause"></i></button>
-            <div style="position: relative;">
-                <div id="soundPrompt" class="sound-prompt">ACTIVA EL SONIDO</div>
-                <button class="ctrl-btn" onclick="toggleMute()"><i id="muteIcon" class="fas fa-volume-mute"></i></button>
+<body class="bg-gray-50 p-4 sm:p-6 lg:p-8">
+
+    <div class="container mx-auto max-w-7xl">
+        
+        <div class="bg-white rounded-lg shadow-xl overflow-hidden">
+            
+            <!-- Encabezado / Banner Superior Indigo -->
+            <div class="bg-indigo-700 p-6 sm:p-8 lg:p-10">
+                <div class="flex flex-col md:flex-row gap-8">
+                    
+                    <!-- Lado Izquierdo: Logo, Título y Párrafo introductorio -->
+                    <div class="w-full md:w-2/3 flex flex-col sm:flex-row gap-6 items-center sm:items-start">
+                        <img class="h-28 w-28 sm:h-36 sm:w-36 rounded-full ring-4 ring-white object-cover flex-shrink-0" src="https://res.cloudinary.com/dn4m0kr7j/image/upload/v1789441495/WhatsApp_Image_2026-09-14_at_9.04.11_PM_bj4uka.jpg" alt="Logo ULAL">
+                        
+                        <div class="text-center sm:text-left">
+                            <h1 class="text-2xl sm:text-3xl lg:text-4xl font-bold text-white mb-3">Universidad en Línea<br>América Latina S.C.®</h1>
+                            <p class="text-indigo-100 text-sm sm:text-base leading-relaxed">
+                                En la Universidad en Línea de América Latina queremos que avances a tu propio ritmo desde la comodidad de tu hogar.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- Lado Derecho: Información de Contacto -->
+                    <div class="w-full md:w-1/3 flex flex-col justify-center">
+                        <ul class="space-y-4 text-indigo-100 text-sm sm:text-base">
+                            <!-- Ubicación -->
+                            <li class="flex items-start">
+                                <svg class="w-6 h-6 text-white mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path>
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                                </svg>
+                                <span>Calle 4a #6 Altos, Col. Centro | Chihuahua, México</span>
+                            </li>
+                            <!-- Teléfono (Con el SVG corregido) -->
+                            <li class="flex items-start">
+                                <svg class="w-6 h-6 text-white mr-3 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path>
+                                </svg>
+                                <span>526142098479 - 526142123175</span>
+                            </li>
+                            <!-- WhatsApp -->
+                            <li class="flex items-center">
+                                <svg class="w-6 h-6 text-green-400 mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.894 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 4.315 1.731 6.086l.474.852-1.106 4.027 4.135-1.087.803.473z"></path>
+                                </svg>
+                                <a href="https://api.whatsapp.com/send?phone=526142098479" class="font-semibold text-white hover:text-green-300 transition-colors">¡Contáctanos por WhatsApp!</a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
             </div>
+
+            <!-- Contenido Inferior (Fondo Blanco) -->
+            <div class="p-6 sm:p-8 lg:p-10 bg-white">
+                <p class="text-gray-600 leading-relaxed max-w-4xl">
+                    Te damos la bienvenida a nuestra plataforma de agendamiento para clases personalizadas (1 a 1). Sigue estos sencillos pasos para programar tu sesión:<br><br>
+                    <strong>Paso 1:</strong> Selecciona a tu profesor y verifica que corresponda a tu carrera o materia.<br>
+                    <strong>Paso 2:</strong> Haz clic en el botón "Agendar servicio".<br>
+                    <strong>Paso 3:</strong> Selecciona el día y la hora disponibles en el calendario de tu maestro.<br>
+                    <strong>Paso 4:</strong> Déjanos tus datos reales (correo y teléfono) y confirma que todo esté bien.<br>
+                    <strong>Paso 5:</strong> ¡Listo! Realiza el pago de tu clase.<br>
+                    <strong>Paso 6:</strong> Sigue de cerca las notificaciones que te llegarán por correo y WhatsApp.
+                </p>
+            </div>
+            
         </div>
     </div>
- 
-    <header class="hero-text-wrapper gs-reveal">
-        <h1 class="hero-title">Franquicia Educativa</h1>
-        <p class="hero-subtitle">Más de 23 años de experiencia transformando vidas en México.</p>
-        <a href="https://chat.whatsapp.com/IUeFFiRZ8zrJWGsajKDqri" class="btn-cta green" onclick="fbq('track', 'Contact');" target="_blank">
-            <i class="fab fa-whatsapp" style="font-size: 1.2rem;"></i> Estoy Interesado
-        </a>
-    </header>
- 
-    <main class="main-content">
-        
-        <section class="container" id="why-section">
-            <div class="section-kicker gs-up">Oportunidad educativa</div>
-            <h2 class="gs-up">¿Por Qué una Franquicia ULAL?</h2>
-            <div class="grid-3">
-                <div class="card gs-up card-tilt">
-                    <i class="fas fa-cogs"></i>
-                    <h3>Modelo Probado</h3>
-                    <p>Sistema educativo funcional y estandarizado, listo para operar sin complicaciones.</p>
-                </div>
-                <div class="card gs-up card-tilt">
-                    <i class="fas fa-graduation-cap"></i>
-                    <h3>Alta Demanda</h3>
-                    <p>En 2023, el 59% de adultos no ha concluido educación media superior.</p>
-                </div>
-                <div class="card gs-up card-tilt">
-                    <i class="fas fa-wallet"></i>
-                    <h3>Retorno Rápido</h3>
-                    <p>Modelo financiero con ROI estimado en menos de 6 meses y flujo desde el primer mes.</p>
-                </div>
-            </div>
-        </section>
- 
-        <section class="container" style="padding-top: 0;">
-            <div class="stats-strip gs-up">
-                <div class="stat-item">
-                    <div class="stat-number">11,800+</div>
-                    <div class="stat-label">Alumnos egresados</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">23+</div>
-                    <div class="stat-label">Años de experiencia</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">100%</div>
-                    <div class="stat-label">Validez oficial SEP</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">$499</div>
-                    <div class="stat-label">MXN mensuales</div>
-                </div>
-            </div>
-        </section>
- 
-        <section class="container">
-            <div class="section-kicker gs-up">Tecnología incluida</div>
-            <h2 class="gs-up">Sistema de Cobros Exclusivo</h2>
-            <div class="feature-row-list">
-                <div class="feature-row gs-up">
-                    <div class="fr-icon"><i class="fas fa-qrcode"></i></div>
-                    <div>
-                        <h4>Recibos con código QR</h4>
-                        <p>Imprime recibos de pago a tus alumnos con código QR, de forma profesional y automática.</p>
+
+            <div class="px-6 sm:px-8 py-6 border-t border-gray-200">
+                <h2 class="text-xl font-bold text-gray-800">Profesionales</h2>
+                <div class="flex flex-wrap gap-4 sm:gap-8 mt-4">
+                    <div class="text-center">
+                        <img class="w-16 h-16 rounded-full mx-auto" src="https://res.cloudinary.com/dn4m0kr7j/image/upload/v1789439642/mtra-daniela-1_s110z1.png" alt="Daniela Dominguez">
+                        <p class="text-sm mt-2 text-gray-700">Ing. Daniela Dominguez</p>
+                        <p class="text-sm mt-2 text-gray-700">Preparatoria</p>
                     </div>
-                </div>
-                <div class="feature-row gs-up">
-                    <div class="fr-icon"><i class="fas fa-calendar-check"></i></div>
-                    <div>
-                        <h4>Cortes diarios, semanales y mensuales</h4>
-                        <p>Controla tu operación con cortes de caja automatizados en el momento que los necesites.</p>
+                    <div class="text-center">
+                        <img class="w-16 h-16 rounded-full mx-auto" src="https://res.cloudinary.com/dn4m0kr7j/image/upload/v1789439707/profe-arturo-1_s3crm5.png" alt="Arturo Márquez">
+                        <p class="text-sm mt-2 text-gray-700">Ing. Arturo Márquez</p>
+                        <p class="text-sm mt-2 text-gray-700">Preparatoria</p>
                     </div>
-                </div>
-                <div class="feature-row gs-up">
-                    <div class="fr-icon"><i class="fas fa-chart-line"></i></div>
-                    <div>
-                        <h4>Verifica tus ingresos en tiempo real</h4>
-                        <p>Panel de control claro para saber exactamente cuánto estás ganando en cada momento.</p>
+                    <div class="text-center">
+                        <img class="w-16 h-16 rounded-full mx-auto" src="https://res.cloudinary.com/dn4m0kr7j/image/upload/v1789439801/daniel-santiesteban_vukbut.png" alt="Daniel Santiesteban">
+                        <p class="text-sm mt-2 text-gray-700">Lic. Daniel Santiesteban</p>
+                        <p class="text-sm mt-2 text-gray-700">Administración</p>
                     </div>
-                </div>
-                <div class="feature-row gs-up">
-                    <div class="fr-icon"><i class="fab fa-whatsapp"></i></div>
-                    <div>
-                        <h4>Acompañamiento constante del director</h4>
-                        <p>Resuelve dudas y recibe guía directa en un grupo de WhatsApp exclusivo para socios.</p>
+                    <div class="text-center">
+                        <img class="w-16 h-16 rounded-full mx-auto" src="https://res.cloudinary.com/dn4m0kr7j/image/upload/v1789439866/mtra-gabriela-bravo_rxkau9.png" alt="Gabriela Bravo">
+                        <p class="text-sm mt-2 text-gray-700">Lic. Gabriela Bravo</p>
+                        <p class="text-sm mt-2 text-gray-700">Mercadotécnia y Pedagogía</p>
+                    </div>
+                    <div class="text-center">
+                        <img class="w-16 h-16 rounded-full mx-auto" src="https://res.cloudinary.com/dn4m0kr7j/image/upload/v1789439923/mario-caro-1_dobtoh.png" alt="mario Caro">
+                        <p class="text-sm mt-2 text-gray-700">Ing. Mario Caro</p>
+                        <p class="text-sm mt-2 text-gray-700">Ing. Industrial</p>
                     </div>
                 </div>
             </div>
-        </section>
- 
-        <section class="container">
-            <div class="glass-panel gs-up">
-                <div style="flex: 1; min-width: 300px;">
-                    <h2 style="text-align: left; margin-bottom: 20px; font-size: 2.5rem;">Todo listo para ti</h2>
-                    <p style="margin-bottom: 30px; font-size: 1.1rem; color: var(--text-gray);">
-                        No necesitas experiencia previa. Nosotros te proporcionamos la infraestructura completa.
-                    </p>
-                    <ul>
-                        <li><i class="fas fa-check-circle"></i> Plataforma Académica y contenidos actualizados.</li>
-                        <li><i class="fas fa-check-circle"></i> Capacitación 360° para todo tu personal.</li>
-                        <li><i class="fas fa-check-circle"></i> Sistema de cobros y gestión escolar.</li>
-                        <li><i class="fas fa-check-circle"></i> Soporte legal, pedagógico y de marketing.</li>
-                    </ul>
-                </div>
-                <div style="flex: 1; min-width: 300px; text-align: center;">
-                    <i class="fas fa-file-invoice-dollar" style="font-size: 3.5rem; color: var(--ulal-gold); margin-bottom: 20px;"></i>
-                    <h3 style="margin-bottom: 15px; font-size: 1.5rem;">¿Dudas Técnicas?</h3>
-                    <p style="margin-bottom: 30px; color: var(--text-gray);">Recibe la ficha y resuelve tus preguntas.</p>
-                    <a href="https://chat.whatsapp.com/IUeFFiRZ8zrJWGsajKDqri" class="btn-cta" onclick="fbq('track', 'Contact');" target="_blank">
-                        <i class="fab fa-whatsapp"></i> Info vía WhatsApp
+
+
+        </div>
+
+        <div class="mt-10">
+            <h2 class="text-2xl sm:text-3xl font-bold text-gray-800 mb-6">Nuestras Clases Personalizadas</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                
+                <div class="bg-white rounded-lg shadow-lg p-6 flex flex-col">
+                    <h3 class="text-lg font-bold text-gray-900">Licenciatura en Administración</h3>
+                    <div class="flex justify-between items-center mt-3">
+                          <div class="text-center">
+                        <img class="w-10 h-10 rounded-full mx-auto" src="https://res.cloudinary.com/dn4m0kr7j/image/upload/v1789439801/daniel-santiesteban_vukbut.png" alt="Daniel Santist...">
+                        <p class="text-sm mt-2 text-gray-700">Lic. Daniel Santiesteban</p>
+                        <p class="text-sm mt-2 text-gray-700">Administración</p>      
+                    </div>
+                        <span class="text-sm text-gray-600">1 hrs | Videoconferencia</span>
+                        <span class="text-xl font-bold text-indigo-700">$299</span>
+                    </div>
+                    <p class="text-gray-700 mt-4 text-sm flex-grow">Resuelve todas tus dudas y profundiza en los temas que realmente te interesan. Aprende a tu ritmo.</p>
+                    <a href="https://calendar.app.google/JQEddrM9iXfBcbkP7" target="_blank" class="mt-6 block w-full text-center bg-indigo-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-indigo-700 transition-colors">
+                        Agendar 
                     </a>
                 </div>
-            </div>
-        </section>
-
-        <section class="container acc-section">
-    <div class="acc-wrap">
-        <div class="acc-head gs-up">
-            <div class="acc-kicker"><span class="acc-dot"></span> Gestión en tiempo real</div>
-            <h2>Dos Accesos, Un Solo Control</h2>
-            <p>Nuestra plataforma cuenta con dos tipos de acceso independientes y complementarios, para que delegues la operación diaria sin perder el control de tu negocio.</p>
-        </div>
-
-        <div class="acc-panels gs-up">
-            <div class="acc-panel secretary">
-                <div class="acc-panel-bar"><span></span><span></span><span></span><small>acceso_secretaria.app</small></div>
-                <div class="acc-panel-body">
-                    <div class="acc-role-icon"><i class="fas fa-headset"></i></div>
-                    <h3>Secretaría / Recepción</h3>
-                    <p>Tu personal de apoyo o asistente se encarga del registro diario, atención a alumnos, agenda y cobranza operativa sin saturar tu tiempo.</p>
-                    <div class="acc-tag-list">
-                        <span class="acc-tag">Registro de alumnos</span>
-                        <span class="acc-tag">Agenda</span>
-                        <span class="acc-tag">Cobranza diaria</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="acc-connector">
-                <div class="acc-line"></div>
-                <i class="fas fa-arrows-left-right"></i>
-                <div class="acc-line"></div>
-            </div>
-
-            <div class="acc-panel director">
-                <div class="acc-panel-bar"><span></span><span></span><span></span><small>acceso_director.app</small></div>
-                <div class="acc-panel-body">
-                    <div class="acc-role-icon"><i class="fas fa-user-tie"></i></div>
-                    <h3>Director</h3>
-                    <p>Tú, como dueño o director, mantienes la supervisión total del establecimiento: reportes de ingresos, pagos pendientes y métricas clave en tiempo real.</p>
-                    <div class="acc-tag-list">
-                        <span class="acc-tag">Ingresos en vivo</span>
-                        <span class="acc-tag">Pagos pendientes</span>
-                        <span class="acc-tag">Métricas clave</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="acc-phone-block gs-up">
-            <div class="acc-phone">
-                <div class="acc-panel-bar" style="background:transparent;border:none;padding:0;justify-content:center;">
-                    <small style="margin-left:0;color:#555;">09:41</small>
-                </div>
-                <div class="acc-phone-screen">
-                    <div class="acc-metric"><span>Ingresos de hoy</span><strong>$18,450 MXN</strong></div>
-                    <div class="acc-metric"><span>Inscripciones Realizadas</span><strong>7</strong></div>
-                    <div class="acc-metric"><span>Corte semanal</span><strong>$92,300 MXN</strong></div>
-                </div>
-            </div>
-            <div class="acc-phone-text">
-                <h3>Tu negocio en la palma de tu mano</h3>
-                <p>Con el perfil de Director, no necesitas estar presente físicamente para saber cómo va el día. Consulta los ingresos y el estado financiero de tu escuela desde tu celular, tablet o computadora, desde la comodidad de tu casa o donde te encuentres.</p>
-            </div>
-        </div>
-    </div>
-</section>
-
-<section class="container becado-section">
-    <div class="becado-wrap">
-        <div class="becado-seal-col gs-up">
-    <div class="becado-seal">
-        <div class="becado-ribbon-top"><i class="fas fa-check" style="margin-right:6px;"></i>Franquicatario</div>
-        <div class="becado-seal-inner">
-            <i class="fas fa-graduation-cap"></i>
-            <span>Socio & Alumno</span>
-            <small>Modelo único ULAL</small>
-        </div>
-        <div class="becado-ribbon"><i class="fas fa-check" style="margin-right:6px;"></i>Estudios cubiertos</div>
-    </div>
-</div>
-
-        <div class="becado-text-col gs-up">
-            <div class="becado-kicker">Beneficio exclusivo de socios</div>
-            <h2>El único modelo donde eres socio y alumno al mismo tiempo</h2>
-            <p class="becado-intro">
-                Al adquirir tu franquicia, no solo inviertes en un negocio rentable; también inviertes en tu propio futuro profesional. Pertenecer a nuestro equipo te da el beneficio exclusivo de cursar tu Preparatoria o una Carrera Profesional con condiciones que ningún alumno regular tiene.
-            </p>
-
-            <ul class="becado-steps">
-                <li class="becado-step">
-                    <div class="becado-step-num">1</div>
-                    <div>
-                        <h4>Gana dinero mientras te superas</h4>
-                        <p>Desarrolla tu franquicia desde la comodidad de tu casa y genera ingresos diarios mientras estudias.</p>
-                    </div>
-                </li>
-                <li class="becado-step">
-                    <div class="becado-step-num">2</div>
-                    <div>
-                        <h4>Becado por tu propio negocio</h4>
-                        <p>Al ser socio y parte de la universidad, tus estudios quedan prácticamente cubiertos por los mismos rendimientos de tu franquicia, permitiéndote terminar tu prepa o licenciatura sin que represente un gasto para ti.</p>
-                    </div>
-                </li>
-                <li class="becado-step">
-                    <div class="becado-step-num">3</div>
-                    <div>
-                        <h4>Acceso a todo nuestro catálogo académico</h4>
-                        <p>Puedes cursar tú mismo los programas, diplomados y carreras que ofrece la plataforma para seguir preparándote al máximo.</p>
-                    </div>
-                </li>
-            </ul>
-        </div>
-    </div>
-</section>
- 
-        <section class="container">
-            <div class="section-kicker gs-up">Modelo de negocio</div>
-            <h2 class="gs-up">Una Franquicia es Éxito Comprobado</h2>
-            <div class="grid-3">
-                <div class="card gs-up card-tilt">
-                    <i class="fas fa-award"></i>
-                    <h3>Marca Registrada</h3>
-                    <p>Respaldo de una marca registrada, con más de 11,800 alumnos egresados que te respaldarán como si fueran tuyos.</p>
-                </div>
-                <div class="card gs-up card-tilt">
-                    <i class="fas fa-user-graduate"></i>
-                    <h3>Capacitación y Soporte</h3>
-                    <p>Sin necesidad de experiencia previa en educación.</p>
-                </div>
-                <div class="card gs-up card-tilt">
-                    <i class="fas fa-stamp"></i>
-                    <h3>Validez Oficial</h3>
-                    <p>Con validez oficial en México y EE.UU., todo listo para operar desde el día uno.</p>
-                </div>
-            </div>
-            <div class="stat-callout gs-up">
-                <i class="fas fa-chart-pie"></i>
-                <p>Estadísticamente, las franquicias tienen una tasa de supervivencia a los 5 años considerablemente más alta que los emprendimientos tradicionales, ya que evitan la "curva de aprendizaje" que suele llevar a la quiebra a los negocios nuevos.</p>
-            </div>
-            <div class="badge-strip gs-up" style="margin-top: 30px;">
-                <div class="trust-badge"><i class="fas fa-shield-alt"></i> Respaldo de marca registrada</div>
-                <div class="trust-badge"><i class="fas fa-map-marked-alt"></i> Cobertura en toda la República</div>
-                <div class="trust-badge"><i class="fas fa-building-columns"></i> Convenios y avales SEP</div>
-            </div>
-        </section>
- 
-        <section class="container">
-            <div class="glass-panel gs-up">
-                <div style="flex: 1; min-width: 300px; text-align: center;">
-                    <i class="fas fa-laptop-house" style="font-size: 3.5rem; color: var(--ulal-gold); margin-bottom: 20px;"></i>
-                    <h3 style="margin-bottom: 15px; font-size: 1.5rem;">Plataforma de Estudios Lista</h3>
-                    <p style="color: var(--text-gray);">Ya cargada con todo el contenido, actualizado permanentemente por nuestros propios maestros.</p>
-                </div>
-                <div style="flex: 1; min-width: 300px;">
-                    <h2 style="text-align: left; margin-bottom: 20px; font-size: 2.2rem;">Sé Alumno y Socio a la vez</h2>
-                    <p style="margin-bottom: 20px; font-size: 1.05rem; color: var(--text-gray);">
-                        Termina tus estudios mientras ganas dinero desde tu casa. Las carreras profesionales y la PREPA ya están funcionando, con más de 11,800 alumnos egresados que lo avalan.
-                    </p>
-                    <ul>
-                        <li><i class="fas fa-check-circle"></i> Serás socio de una universidad presencial con modelo en línea.</li>
-                        <li><i class="fas fa-check-circle"></i> Pronto estará físicamente en tu ciudad.</li>
-                    </ul>
-                </div>
-            </div>
-        </section>
- 
-       <section class="container">
-    <div class="section-kicker gs-up">¿Cuál eres tú?</div>
-    <h2 class="gs-up">Diseñado Para Tu Perfil</h2>
-    <div class="persona-grid">
-
-        <div class="persona-card-v2 gs-up">
-            <div class="persona-v2-head">
-                <span class="persona-emoji">👨‍💼</span>
-                <h4>El Emprendedor Principiante</h4>
-            </div>
-            <div class="persona-v2-block">
-                <div class="persona-v2-tag quien"></div>
-                <p>Tiene ganas de poner un negocio propio, pero no sabe por dónde empezar, no tiene experiencia previa o le da temor perder su inversión.</p>
-            </div>
-            <div class="persona-v2-block">
-                <div class="persona-v2-tag motivacion"></div>
-                <p>Quiere independencia financiera y ser su propio jefe, pero busca seguridad. La franquicia le entrega el modelo probado y el respaldo institucional para operar de inmediato.</p>
-            </div>
-        </div>
-
-        <div class="persona-card-v2 gs-up">
-            <div class="persona-v2-head">
-                <span class="persona-emoji">🏠</span>
-                <h4>Mamá / Papá en Casa</h4>
-            </div>
-            <div class="persona-v2-block">
-                <div class="persona-v2-tag quien"></div>
-                <p>Pasa la mayor parte del día al cuidado de sus hijos o del hogar, pero necesita o desea generar ingresos propios en sus tiempos libres.</p>
-            </div>
-            <div class="persona-v2-block">
-                <div class="persona-v2-tag motivacion"></div>
-                <p>Aportar a la economía familiar sin descuidar a sus hijos. Opera un negocio 100% digital desde casa, con sus propios horarios.</p>
-            </div>
-        </div>
-
-        <div class="persona-card-v2 gs-up">
-            <div class="persona-v2-head">
-                <span class="persona-emoji">🎓</span>
-                <h4>Estudiante o Recién Egresado</h4>
-            </div>
-            <div class="persona-v2-block">
-                <div class="persona-v2-tag quien"></div>
-                <p>Está estudiando o acaba de terminar su carrera y enfrenta la falta de oportunidades laborales por no tener "experiencia".</p>
-            </div>
-            <div class="persona-v2-block">
-                <div class="persona-v2-tag motivacion"></div>
-                <p>Generar sus propios ingresos y continuar sus estudios. Aprovecha la beca exclusiva de socio para titularse mientras emprende.</p>
-            </div>
-        </div>
-
-        <div class="persona-card-v2 gs-up">
-            <div class="persona-v2-head">
-                <span class="persona-emoji">💪</span>
-                <h4>En Búsqueda de Empleo o Reconversión</h4>
-            </div>
-            <div class="persona-v2-block">
-                <div class="persona-v2-tag quien"></div>
-                <p>Actualmente desempleado, fue liquidado o no puede salir a buscar trabajo tradicional, incluyendo personas con alguna discapacidad motriz.</p>
-            </div>
-            <div class="persona-v2-block">
-                <div class="persona-v2-tag motivacion"></div>
-                <p>Volver a ser productivo y generar ingresos estables. El modelo 100% remoto elimina las barreras de movilidad: solo requiere internet.</p>
-            </div>
-        </div>
-
-        <div class="persona-card-v2 gs-up">
-            <div class="persona-v2-head">
-                <span class="persona-emoji">💼</span>
-                <h4>Empleado con Ingreso Extra</h4>
-            </div>
-            <div class="persona-v2-block">
-                <div class="persona-v2-tag quien"></div>
-                <p>Tiene un empleo formal, pero su sueldo actual no le alcanza para sus metas o busca diversificar sus fuentes de dinero.</p>
-            </div>
-            <div class="persona-v2-block">
-                <div class="persona-v2-tag motivacion"></div>
-                <p>Crear un "plan B" financiero. Administra su franquicia en noches o fines de semana sin descuidar su empleo actual.</p>
-            </div>
-        </div>
-
-        <div class="persona-card-v2 gs-up">
-            <div class="persona-v2-head">
-                <span class="persona-emoji">🌎</span>
-                <h4>Inversionista o Dueño de Negocio</h4>
-            </div>
-            <div class="persona-v2-block">
-                <div class="persona-v2-tag quien"></div>
-                <p>Tiene visión empresarial, capital o experiencia previa, con otros negocios o inversiones, y busca diversificar en educación.</p>
-            </div>
-            <div class="persona-v2-block">
-                <div class="persona-v2-tag motivacion"></div>
-                <p>Multiplicar su dinero con alta rentabilidad y baja infraestructura física, entrando rápido a la industria de la edtech.</p>
-            </div>
-        </div>
-
-    </div>
-</section>
- 
-        <section class="container" style="text-align: center;">
-            <h2 class="gs-up" style="margin-bottom: 20px;">¿Te Identificaste con Alguno?</h2>
-            <p class="gs-up" style="max-width: 700px; margin: 0 auto 10px auto; color: var(--text-gray); font-size: 1.1rem;">
-                El mercado educativo digital no va a esperar. Domina la educación en línea, construye tu propio patrimonio y toma el control de tus finanzas operando tu franquicia digital desde casa.
-            </p>
-        </section>
- 
-        <section class="container">
-            <div class="section-kicker gs-up">Testimonios</div>
-            <h2 class="gs-up">Historias de Éxito</h2>
-            
-            <div class="glass-panel carousel-container gs-up">
-                <!-- Slides -->
-                <div class="testimonial-slide">
-                    <img src="https://cursos.ulalmexico.com/wp-content/uploads/2025/08/David-Mendoza-e1755809704144.webp" class="grad-img" alt="Graduado">
-                    <p class="testimonial-text">"Este título profesional me permitió solicitar un aumento en la empresa... me fui a Estados Unidos y al regresar ULAL me permitió terminarla."</p>
-                    <div class="testimonial-author">David Mendoza</div>
-                    <div class="testimonial-role">Egresado Ing. Industrial</div>
-                </div>
-                <div class="testimonial-slide">
-                    <img src="https://cursos.ulalmexico.com/wp-content/uploads/2025/08/Marosil.webp" class="grad-img" alt="Graduada">
-                    <p class="testimonial-text">"Gracias a ULAL a mis 22 años ya tengo mi título profesional de Administración. Lo logré en menos de un año."</p>
-                    <div class="testimonial-author">Marisol López</div>
-                    <div class="testimonial-role">Egresada Lic. Administración</div>
-                </div>
-                <div class="testimonial-slide">
-                    <img src="https://cursos.ulalmexico.com/wp-content/uploads/2025/08/Jhoani-Marquez-1-e1755809908449.webp" class="grad-img" alt="Graduada">
-                    <p class="testimonial-text">"El trato humano y el respaldo legal hicieron toda la diferencia. Totalmente recomendable."</p>
-                    <div class="testimonial-author">Jhoani Marquez</div>
-                    <div class="testimonial-role">Egresada Lic. Pedagogía</div>
-                </div>
- 
-                <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
-                <a class="next" onclick="plusSlides(1)">&#10095;</a>
                 
-                <div class="dots-container">
-                    <span class="dot" onclick="currentSlide(1)"></span>
-                    <span class="dot" onclick="currentSlide(2)"></span>
-                    <span class="dot" onclick="currentSlide(3)"></span>
+                <div class="bg-white rounded-lg shadow-lg p-6 flex flex-col">
+                    <h3 class="text-lg font-bold text-gray-900">Licenciatura en Mercadotecnia</h3>
+                    <div class="flex justify-between items-center mt-3">
+                        <div class="text-center">
+                        <img class="w-10 h-10 rounded-full mx-auto" src="https://res.cloudinary.com/dn4m0kr7j/image/upload/v1789439866/mtra-gabriela-bravo_rxkau9.png" alt="Gabriela Bravo">
+                        <p class="text-sm mt-2 text-gray-700">Lic. Gabriela Bravo</p>
+                        <p class="text-sm mt-2 text-gray-700">Mercadotécnia</p>
+                    </div>
+                        <span class="text-sm text-gray-600">1 hrs | Videoconferencia</span>
+                        <span class="text-xl font-bold text-indigo-700">$299</span>
+                    </div>
+                    <p class="text-gray-700 mt-4 text-sm flex-grow">Impulsa tu carrera con clases enfocadas en estrategias de mercado, branding y comunicación digital.</p>
+                    <a href="https://calendar.app.google/M9RNkZtEPVEB2TtcA" target="_blank" class="mt-6 block w-full text-center bg-indigo-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-indigo-700 transition-colors">
+                        Agendar servicio
+                    </a>
                 </div>
+
+                <div class="bg-white rounded-lg shadow-lg p-6 flex flex-col">
+                    <h3 class="text-lg font-bold text-gray-900">[PREPARATORIA] Matemáticas y Ciencias Experimentales</h3>
+                    <div class="flex justify-between items-center mt-3">
+                        <div class="text-center">
+                        <img class="w-10 h-10 rounded-full mx-auto" src="https://res.cloudinary.com/dn4m0kr7j/image/upload/v1789439707/profe-arturo-1_s3crm5.png" alt="Arturo Márquez">
+                        <p class="text-sm mt-2 text-gray-700">Ing. Arturo Márquez</p>
+                        <p class="text-sm mt-2 text-gray-700">Preparatoria</p>
+                    </div>
+                        <span class="text-sm text-gray-600">1 hrs | Videoconferencia</span>
+                        <span class="text-xl font-bold text-indigo-700">$299</span>
+                    </div>
+                    <p class="text-gray-700 mt-4 text-sm flex-grow">Refuerza tus bases en cálculo, álgebra y física con la ayuda de un experto. Prepárate para tus exámenes.</p>
+                    <a href="https://calendar.app.google/PA3sxNjewTHhViAf6" target="_blank" class="mt-6 block w-full text-center bg-indigo-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-indigo-700 transition-colors">
+                        Agendar clase
+                    </a>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-lg p-6 flex flex-col">
+                    <h3 class="text-lg font-bold text-gray-900">Licenciatura en Pedagogía</h3>
+                    <div class="flex justify-between items-center mt-3">
+                        <div class="text-center">
+                        <img class="w-10 h-10 rounded-full mx-auto" src="https://res.cloudinary.com/dn4m0kr7j/image/upload/v1789439866/mtra-gabriela-bravo_rxkau9.png" alt="Gabriela Bravo">
+                        <p class="text-sm mt-2 text-gray-700">Lic. Gabriela Bravo</p>
+                        <p class="text-sm mt-2 text-gray-700">Pedagogía</p>
+                    </div>
+                        <span class="text-sm text-gray-600">1 hrs | Videoconferencia</span>
+                        <span class="text-xl font-bold text-indigo-700">$299</span>
+                    </div>
+                    <p class="text-gray-700 mt-4 text-sm flex-grow">Explora modelos educativos, psicología del aprendizaje y técnicas de enseñanza efectivas.</p>
+                    <a href="https://calendar.app.google/EKR5Qts426Rhum7J7" target="_blank" class="mt-6 block w-full text-center bg-indigo-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-indigo-700 transition-colors">
+                        Agendar asesoría
+                    </a>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-lg p-6 flex flex-col">
+                    <h3 class="text-lg font-bold text-gray-900">Ingeniería Industrial</h3>
+                    <div class="flex justify-between items-center mt-3">
+                        <div class="text-center">
+                        <img class="w-10 h-10 rounded-full mx-auto" src="https://res.cloudinary.com/dn4m0kr7j/image/upload/v1789439923/mario-caro-1_dobtoh.png" alt="Mario Caro">
+                        <p class="text-sm mt-2 text-gray-700">Ing. Mario Caro</p>
+                        <p class="text-sm mt-2 text-gray-700">Ing. Industrial</p>
+                    </div>
+                        <span class="text-sm text-gray-600">1 hrs | Videoconferencia</span>
+                        <span class="text-xl font-bold text-indigo-700">$299</span>
+                    </div>
+                    <p class="text-gray-700 mt-4 text-sm flex-grow">Aprende a optimizar procesos y sistemas. Mejora la eficiencia, calidad y logística para maximizar la productividad en cualquier industria.</p>
+                    <a href="https://calendar.app.google/t7jGwNwoXRASi3GE8" target="_blank" class="mt-6 block w-full text-center bg-indigo-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-indigo-700 transition-colors">
+                        Agendar tutoría
+                    </a>
+                </div>
+
+                <div class="bg-white rounded-lg shadow-lg p-6 flex flex-col">
+                    <h3 class="text-lg font-bold text-gray-900">[PREPARATORIA] Español y Ciencias Sociales</h3>
+                    
+                    <div class="flex justify-between items-center mt-3">
+<div class="text-center">
+    <img class="w-10 h-10 rounded-full mx-auto" src="https://res.cloudinary.com/dn4m0kr7j/image/upload/v1789439642/mtra-daniela-1_s110z1.png" alt="Daniela Doming...">
+    <p class="text-sm mt-2 text-gray-700">Ing. Daniela Dominguez</p>
+    <p class="text-sm mt-2 text-gray-700">Preparatoria</p>
+
+</div>
+                        <span class="text-sm text-gray-600">1 hrs | Videoconferencia</span>
+                        <span class="text-xl font-bold text-indigo-700">$299</span>
+                    </div>
+                    <p class="text-gray-700 mt-4 text-sm flex-grow">Mejora tu redacción, análisis y pensamiento crítico. Explora la historia, la sociedad y la literatura para entender mejor el mundo actual.</p>
+                    <a href="https://calendar.app.google/4WCrX8Awj2vGSqVz6" target="_blank" class="mt-6 block w-full text-center bg-indigo-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-indigo-700 transition-colors">
+                        Agendar 
+                    </a>
+                </div>
+
             </div>
-        </section>
- 
-        <section class="container" style="text-align: center;">
-            <div class="price-card gs-up">
-                <div class="price-ribbon"><i class="fas fa-shield-alt"></i> Garantía de recuperación</div>
-                <div class="section-kicker">Arranca hoy</div>
-                <h2 style="margin-bottom: 0;">Obtén tu Franquicia</h2>
-                <div class="price-tag">$499 MXN</div>
-                <p class="price-note">Por mes — liquida el resto mientras creces.</p>
-                <ul class="price-perks">
-                    <li><i class="fas fa-check-circle"></i> Capacitación inmediata al confirmar tu pago</li>
-                    <li><i class="fas fa-check-circle"></i> Acceso y contraseña a la plataforma al instante</li>
-                    <li><i class="fas fa-check-circle"></i> Primeras campañas de publicidad hechas por nosotros</li>
-                    <li><i class="fas fa-check-circle"></i> Si no recuperas tu inversión en el primer mes, te devolvemos tu dinero</li>
-                </ul>
-                <a href="https://chat.whatsapp.com/IUeFFiRZ8zrJWGsajKDqri" class="btn-cta green" onclick="fbq('track', 'Contact');" target="_blank" style="padding: 18px 36px;">
-                    <i class="fab fa-whatsapp"></i> ¡Quiero mi Franquicia por $499 MXN!
-                </a>
-            </div>
-        </section>
- 
-        <section class="container">
-            <div class="section-kicker gs-up">Resolvemos tus dudas</div>
-            <h2 class="gs-up">Preguntas Frecuentes</h2>
-            <div class="accordion gs-up">
-                <div class="accordion-item" onclick="toggleAccordion(this)">
-                    <div class="accordion-question">¿Necesito experiencia en educación o impartir clases? <i class="fas fa-plus"></i></div>
-                    <div class="accordion-answer"><div>Negativo, te capacitamos. La Franquicia Principal ya cuenta con los maestros y el director te ayudará con todo.</div></div>
-                </div>
-                <div class="accordion-item" onclick="toggleAccordion(this)">
-                    <div class="accordion-question">¿Tiene validez oficial SEP? <i class="fas fa-plus"></i></div>
-                    <div class="accordion-answer"><div>Todos los certificados y títulos profesionales tienen validez oficial SEP. La franquicia ya cuenta con los avales de la SEP por diferentes convenios.</div></div>
-                </div>
-                <div class="accordion-item" onclick="toggleAccordion(this)">
-                    <div class="accordion-question">¿Cuánto tiempo tarda en comenzar mi capacitación? <i class="fas fa-plus"></i></div>
-                    <div class="accordion-answer"><div>Es inmediata. Desde que confirmas el pago de tu inversión, te enviamos tu acceso y contraseña a la plataforma.</div></div>
-                </div>
-                <div class="accordion-item" onclick="toggleAccordion(this)">
-                    <div class="accordion-question">¿De dónde pueden ser mis alumnos? <i class="fas fa-plus"></i></div>
-                    <div class="accordion-answer"><div>Puedes vender educación en línea a toda la República, además de cursos presenciales en las ciudades donde tenemos sede.</div></div>
-                </div>
-                <div class="accordion-item" onclick="toggleAccordion(this)">
-                    <div class="accordion-question">¿Qué pasa si no sé hacer publicidad para vender mis cursos? <i class="fas fa-plus"></i></div>
-                    <div class="accordion-answer"><div>No te preocupes. Nosotros te hacemos las primeras campañas y te damos un curso para que tú mismo aprendas.</div></div>
-                </div>
-                <div class="accordion-item" onclick="toggleAccordion(this)">
-                    <div class="accordion-question">¿Existe alguna garantía? <i class="fas fa-plus"></i></div>
-                    <div class="accordion-answer"><div>Sí. Si en el primer mes no recuperas tu inversión, te regresamos tu dinero. Disponible en pago mensual.</div></div>
-                </div>
-            </div>
-        </section>
- 
-        <section class="container territorio-section">
-    <div class="territorio-radar gs-up">
-        <div class="territorio-radar-ring"></div>
-        <div class="territorio-radar-ring"></div>
-        <div class="territorio-radar-ring"></div>
-        <div class="territorio-radar-core"><i class="fas fa-map-marker-alt"></i></div>
+        </div>
     </div>
 
-    <h2 class="gs-up" style="font-size: clamp(2.5rem, 6vw, 4rem);">Conviértete en Pionero</h2>
-    <p class="territorio-lead gs-up">
-        Asegura una zona exclusiva y accede a beneficios por ser uno de nuestros primeros socios.
-    </p>
+    <footer class="text-center py-8 text-gray-500 text-sm">
+        <p>&copy; 2025 Universidad en Línea América Latina. Todos los derechos reservados.</p>
+    </footer>
 
-    <div class="territorio-chip gs-up">
-        <i class="fas fa-school" style="color: var(--ulal-gold);"></i>
-        Solo <strong>una escuela presencial</strong> por cada <strong>500 mil habitantes</strong>
-    </div>
-
-    <div class="territorio-guarantee gs-up">
-        <i class="fas fa-file-contract"></i>
-        <p>Garantizamos <strong style="color: var(--ulal-gold);">por contrato</strong> que ningún otro franquiciado se instalará en tu territorio, protegiendo tu inversión y tu margen.</p>
-    </div>
-
-    <a href="https://chat.whatsapp.com/IUeFFiRZ8zrJWGsajKDqri" class="btn-cta green gs-up" onclick="fbq('track', 'Contact');" style="padding: 18px 40px;">
-        <i class="fab fa-whatsapp"></i> Unirse al Grupo
-    </a>
-
-    <div class="territorio-urgency gs-up">
-        <div class="u-line1">Consulta si tu ciudad aún está disponible.</div>
-        <div class="u-line2"><span class="u-dot"></span> Licencia exclusiva territorial en fase de selección.</div>
-    </div>
-</section>
- 
-        <footer>
-            <div style="font-weight: 700; font-size: 1.5rem; letter-spacing: 2px; color: #fff;">ULAL</div>
-            <p style="margin-top: 10px; font-size: 0.8rem; color: #666;">
-                © 2026 ULAL Franquicia Educativa. Todos los derechos reservados.
-            </p>
-        </footer>
-    </main>
- 
-    <script src="https://player.vimeo.com/api/player.js"></script>
-    <script>
-        // --- 1. LÓGICA DE VIDEO VIMEO ---
-        const videoSources = { portrait: "1229640729", landscape: "1229640697" };
-        const isMobile = window.innerWidth <= 768; 
-        const videoId = isMobile ? videoSources.portrait : videoSources.landscape;
-        const videoContainer = document.getElementById('video-container');
-        
-        document.getElementById('vimeo-wrapper').innerHTML = `<iframe id="vimeo-iframe" src="https://player.vimeo.com/video/${videoId}?background=1&autoplay=1&loop=1&byline=0&title=0&autopause=0" frameborder="0" allow="autoplay; fullscreen" allowfullscreen></iframe>`;
-        
-        const player = new Vimeo.Player(document.getElementById('vimeo-iframe'));
-        if (isMobile) videoContainer.classList.add('is-portrait');
- 
-        function togglePlay() {
-            player.getPaused().then(paused => {
-                paused ? player.play() : player.pause();
-                document.getElementById('playIcon').className = paused ? 'fas fa-pause' : 'fas fa-play';
-            });
-        }
-        function toggleMute() {
-            player.getVolume().then(vol => {
-                player.setVolume(vol === 0 ? 1 : 0); 
-                document.getElementById('muteIcon').className = vol === 0 ? 'fas fa-volume-up' : 'fas fa-volume-mute';
-                document.getElementById('soundPrompt').classList.toggle('hidden', vol === 0);
-            });
-        }
- 
-        // --- 2. DRAG & DROP Y SCROLL ---
-        let isMiniPlayerActive = false, isManuallyClosed = false, isDragging = false, startX, startY;
- 
-        const dragStart = (e) => {
-            if (!videoContainer.classList.contains('mini-player') || e.target.closest('button')) return;
-            isDragging = true; videoContainer.classList.remove('snap-animate');
-            const evt = e.touches ? e.touches[0] : e;
-            const rect = videoContainer.getBoundingClientRect();
-            startX = evt.clientX - rect.left; startY = evt.clientY - rect.top;
-            videoContainer.style.bottom = 'auto'; videoContainer.style.right = 'auto';
-            videoContainer.style.left = rect.left + 'px'; videoContainer.style.top = rect.top + 'px';
-        };
- 
-        const drag = (e) => {
-            if (!isDragging) return; e.preventDefault();
-            const evt = e.touches ? e.touches[0] : e;
-            let nLeft = Math.max(0, Math.min(evt.clientX - startX, window.innerWidth - videoContainer.offsetWidth));
-            let nTop = Math.max(0, Math.min(evt.clientY - startY, window.innerHeight - videoContainer.offsetHeight));
-            videoContainer.style.left = nLeft + 'px'; videoContainer.style.top = nTop + 'px';
-        };
- 
-        const dragEnd = () => {
-            if (!isDragging) return; isDragging = false;
-            const rect = videoContainer.getBoundingClientRect(), margin = 20;
-            const corners = [
-                {x: margin, y: margin}, {x: window.innerWidth - rect.width - margin, y: margin},
-                {x: margin, y: window.innerHeight - rect.height - margin}, {x: window.innerWidth - rect.width - margin, y: window.innerHeight - rect.height - margin}
-            ];
-            const closest = corners.reduce((a, b) => Math.hypot(b.x - rect.left, b.y - rect.top) < Math.hypot(a.x - rect.left, a.y - rect.top) ? b : a);
-            videoContainer.classList.add('snap-animate');
-            videoContainer.style.left = closest.x + 'px'; videoContainer.style.top = closest.y + 'px';
-        };
- 
-        videoContainer.addEventListener('mousedown', dragStart); window.addEventListener('mousemove', drag); window.addEventListener('mouseup', dragEnd);
-        videoContainer.addEventListener('touchstart', dragStart, {passive: false}); window.addEventListener('touchmove', drag, {passive: false}); window.addEventListener('touchend', dragEnd);
- 
-        window.addEventListener('scroll', () => {
-            if (isManuallyClosed) return;
-            if (window.scrollY > window.innerHeight * 0.7 && !isMiniPlayerActive) {
-                videoContainer.classList.add('mini-player', 'snap-animate');
-                videoContainer.style.top = 'auto'; videoContainer.style.left = 'auto';
-                videoContainer.style.bottom = '20px'; videoContainer.style.right = '20px';
-                isMiniPlayerActive = true;
-            } else if (window.scrollY <= window.innerHeight * 0.7 && isMiniPlayerActive) {
-                videoContainer.classList.remove('mini-player', 'snap-animate');
-                videoContainer.style.cssText = ''; isMiniPlayerActive = false;
-            }
-        });
- 
-        function closeMiniPlayer() {
-            videoContainer.classList.remove('mini-player'); player.setVolume(0); 
-            document.getElementById('muteIcon').className = 'fas fa-volume-mute';
-            document.getElementById('soundPrompt').classList.remove('hidden'); 
-            isManuallyClosed = true; videoContainer.style.cssText = '';
-        }
- 
-        // --- 3. CAROUSEL ---
-        let slideIndex = 1; showSlides(slideIndex);
-        function plusSlides(n) { showSlides(slideIndex += n); }
-        function currentSlide(n) { showSlides(slideIndex = n); }
-        function showSlides(n) {
-            let slides = document.getElementsByClassName("testimonial-slide");
-            let dots = document.getElementsByClassName("dot");
-            if (n > slides.length) slideIndex = 1; if (n < 1) slideIndex = slides.length;
-            Array.from(slides).forEach(s => s.style.display = "none");
-            Array.from(dots).forEach(d => d.className = d.className.replace(" active", ""));
-            slides[slideIndex-1].style.display = "block"; dots[slideIndex-1].className += " active";
-        }
-        setInterval(() => plusSlides(1), 5000);
- 
-        // --- 4. ACORDEÓN FAQ ---
-        function toggleAccordion(item) {
-            const answer = item.querySelector('.accordion-answer');
-            const wasActive = item.classList.contains('active');
-            document.querySelectorAll('.accordion-item').forEach(el => {
-                el.classList.remove('active');
-                el.querySelector('.accordion-answer').style.maxHeight = null;
-            });
-            if (!wasActive) {
-                item.classList.add('active');
-                answer.style.maxHeight = answer.scrollHeight + 'px';
-            }
-        }
- 
-    </script>
- 
-    <!-- WEBGL SHADER PREMIUM GLOBAL Y GSAP APPLE-MOTION -->
-    <script>
-    (() => {
-      // SHADER WEBGL (Fondo estelar interactivo)
-      const canvas = document.getElementById("corporate-shader");
-      const gl = canvas.getContext("webgl", { alpha: true, antialias: false });
-      if (gl) {
-        const vsSource = `attribute vec4 aVertexPosition; void main() { gl_Position = aVertexPosition; }`;
-        const fsSource = `
-          precision highp float; uniform vec2 iResolution; uniform float iTime;
-          float random(float t) { return (cos(t) + cos(t * 1.3 + 1.3) + cos(t * 1.4 + 1.4)) / 3.0; }
-          void main() {
-            vec2 uv = gl_FragCoord.xy / iResolution.xy;
-            vec2 space = (gl_FragCoord.xy - iResolution.xy / 2.0) / iResolution.x * 10.0;
-            space.y += random(space.x * 0.5 + iTime * 0.1) * 2.0;
-            
-            vec4 lines = vec4(0.0);
-            for (int l = 0; l < 12; l++) {
-              float offsetTime = iTime * 0.2;
-              float offsetPosition = float(l) + space.x * 0.5;
-              float rand = random(offsetPosition + offsetTime) * 0.5 + 0.5;
-              float linePos = random(space.x * 0.2 + iTime * 0.1) * 2.0 + random(offsetPosition);
-              float line = smoothstep(0.02, 0.0, abs(linePos - space.y));
-              lines += line * vec4(0.3, 0.4, 0.8, 1.0) * rand; /* Tonos azules premium */
-            }
-            
-            vec4 bgColor1 = vec4(0.02, 0.03, 0.06, 1.0); /* Fondo oscuro profundo */
-            vec4 bgColor2 = vec4(0.05, 0.08, 0.15, 1.0);
-            vec4 fragColor = mix(bgColor1, bgColor2, uv.y);
-            
-            fragColor += lines * 0.5;
-            fragColor.a = 1.0;
-            gl_FragColor = fragColor;
-          }
-        `;
-        const loadShader = (type, source) => { const s = gl.createShader(type); gl.shaderSource(s, source); gl.compileShader(s); return s; };
-        const shaderProgram = gl.createProgram();
-        gl.attachShader(shaderProgram, loadShader(gl.VERTEX_SHADER, vsSource));
-        gl.attachShader(shaderProgram, loadShader(gl.FRAGMENT_SHADER, fsSource));
-        gl.linkProgram(shaderProgram);
-        gl.useProgram(shaderProgram);
- 
-        const positionBuffer = gl.createBuffer();
-        gl.bindBuffer(gl.ARRAY_BUFFER, positionBuffer);
-        gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 1,-1, -1,1, 1,1]), gl.STATIC_DRAW);
-        const vertexPosition = gl.getAttribLocation(shaderProgram, "aVertexPosition");
-        gl.vertexAttribPointer(vertexPosition, 2, gl.FLOAT, false, 0, 0);
-        gl.enableVertexAttribArray(vertexPosition);
- 
-        const resize = () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; gl.viewport(0, 0, canvas.width, canvas.height); };
-        window.addEventListener('resize', resize); resize();
- 
-        const render = (time) => {
-          gl.uniform2f(gl.getUniformLocation(shaderProgram, "iResolution"), canvas.width, canvas.height);
-          gl.uniform1f(gl.getUniformLocation(shaderProgram, "iTime"), time * 0.001);
-          gl.drawArrays(gl.TRIANGLE_STRIP, 0, 4);
-          requestAnimationFrame(render);
-        };
-        requestAnimationFrame(render);
-      }
- 
-      // GSAP SCROLL Y PARALLAX (Apple Style)
-      if (window.gsap && window.ScrollTrigger) {
-        gsap.registerPlugin(ScrollTrigger);
- 
-        // Hero Parallax Fade
-        gsap.to(".hero-text-wrapper", {
-          yPercent: 30, opacity: 0, ease: "none",
-          scrollTrigger: { trigger: ".hero-text-wrapper", start: "top top", end: "bottom top", scrub: 1 }
-        });
- 
-        // Revelado suave de elementos
-        gsap.utils.toArray(".gs-up").forEach(elem => {
-          gsap.fromTo(elem, 
-            { y: 60, opacity: 0 },
-            { y: 0, opacity: 1, duration: 1.2, ease: "expo.out", scrollTrigger: { trigger: elem, start: "top 85%" } }
-          );
-        });
- 
-        // Efecto Tilt 3D estilo Apple TV para tarjetas
-        document.querySelectorAll('.card-tilt').forEach(card => {
-          card.addEventListener("mousemove", (e) => {
-            const rect = card.getBoundingClientRect();
-            const x = (e.clientX - rect.left) / rect.width - 0.5;
-            const y = (e.clientY - rect.top) / rect.height - 0.5;
-            gsap.to(card, { rotationY: x * 15, rotationX: -y * 15, transformPerspective: 1000, duration: 0.5, ease: "power2.out" });
-          });
-          card.addEventListener("mouseleave", () => {
-            gsap.to(card, { rotationY: 0, rotationX: 0, duration: 0.7, ease: "elastic.out(1, 0.3)" });
-          });
-        });
-      }
-    })();
-    </script>
 </body>
 </html>
- 
