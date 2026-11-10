@@ -71,20 +71,18 @@
                 <p class="text-gray-600 leading-relaxed max-w-4xl">
                     Te damos la bienvenida a nuestra plataforma de agendamiento para clases personalizadas (1 a 1). Sigue estos sencillos pasos para programar tu sesión:<br><br>
                     <strong>Paso 1:</strong> Selecciona a tu profesor y verifica que corresponda a tu carrera o materia.<br>
-                    <strong>Paso 2:</strong> Haz clic en el botón "Agendar servicio".<br>
+                    <strong>Paso 2:</strong> Haz clic en el botón "Agendar clase".<br>
                     <strong>Paso 3:</strong> Selecciona el día y la hora disponibles en el calendario de tu maestro.<br>
                     <strong>Paso 4:</strong> Déjanos tus datos reales (correo y teléfono) y confirma que todo esté bien.<br>
                     <strong>Paso 5:</strong> ¡Listo! Realiza el pago de tu clase.<br>
                     <strong>Paso 6:</strong> Sigue de cerca las notificaciones que te llegarán por correo y WhatsApp.
                 </p>
             </div>
-            
-        </div>
-    </div>
 
             <div class="px-6 sm:px-8 py-6 border-t border-gray-200">
                 <h2 class="text-xl font-bold text-gray-800">Profesionales</h2>
-                <div class="flex flex-wrap gap-4 sm:gap-8 mt-4">
+                <!-- Contenido de respaldo: se reemplaza con el catálogo del panel /admin -->
+                <div id="teachers-list" class="flex flex-wrap gap-4 sm:gap-8 mt-4">
                     <div class="text-center">
                         <img class="w-16 h-16 rounded-full mx-auto" src="https://res.cloudinary.com/dn4m0kr7j/image/upload/v1789439642/mtra-daniela-1_s110z1.png" alt="Daniela Dominguez">
                         <p class="text-sm mt-2 text-gray-700">Ing. Daniela Dominguez</p>
@@ -113,12 +111,12 @@
                 </div>
             </div>
 
-
         </div>
 
         <div class="mt-10">
             <h2 class="text-2xl sm:text-3xl font-bold text-gray-800 mb-6">Nuestras Clases Personalizadas</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Contenido de respaldo: se reemplaza con el catálogo del panel /admin -->
+            <div id="classes-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 
                 <div class="bg-white rounded-lg shadow-lg p-6 flex flex-col">
                     <h3 class="text-lg font-bold text-gray-900">Licenciatura en Administración</h3>
@@ -229,8 +227,109 @@
     </div>
 
     <footer class="text-center py-8 text-gray-500 text-sm">
-        <p>&copy; 2025 Universidad en Línea América Latina. Todos los derechos reservados.</p>
+        <p>&copy; <span id="year">2026</span> Universidad en Línea América Latina. Todos los derechos reservados.</p>
     </footer>
+
+    <script src="config.js"></script>
+    <script>
+    (function () {
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        var API = (window.ULAL_API_URL || '').trim();
+        if (!API) return; // sin configurar: se queda el contenido de respaldo
+
+        var CACHE_KEY = 'ulal_catalog_v1';
+
+        function el(tag, className, text) {
+            var node = document.createElement(tag);
+            if (className) node.className = className;
+            if (text != null) node.textContent = text;
+            return node;
+        }
+
+        function httpsUrl(url) {
+            return /^https:\/\//i.test(url || '') ? url : '';
+        }
+
+        function teacherName(t) {
+            return ((t.titulo || '') + ' ' + (t.nombre || '')).trim();
+        }
+
+        function avatar(t, size) {
+            var src = httpsUrl(t.foto);
+            if (src) {
+                var img = el('img', size + ' rounded-full mx-auto object-cover');
+                img.src = src;
+                img.alt = t.nombre || '';
+                img.loading = 'lazy';
+                return img;
+            }
+            var initials = (t.nombre || '?').split(/\s+/).slice(0, 2)
+                .map(function (p) { return p.charAt(0); }).join('').toUpperCase();
+            return el('div', size + ' rounded-full mx-auto bg-indigo-100 text-indigo-700 font-bold flex items-center justify-center', initials);
+        }
+
+        function teacherBlock(t, size) {
+            var box = el('div', 'text-center');
+            box.appendChild(avatar(t, size));
+            box.appendChild(el('p', 'text-sm mt-2 text-gray-700', teacherName(t)));
+            if (t.area) box.appendChild(el('p', 'text-sm mt-2 text-gray-700', t.area));
+            return box;
+        }
+
+        function classCard(c) {
+            var card = el('div', 'bg-white rounded-lg shadow-lg p-6 flex flex-col');
+            card.appendChild(el('h3', 'text-lg font-bold text-gray-900', c.nombre));
+
+            var row = el('div', 'flex justify-between items-center gap-3 mt-3');
+            row.appendChild(teacherBlock(c.teacher || {}, 'w-10 h-10'));
+            row.appendChild(el('span', 'text-sm text-gray-600', c.detalle || ''));
+            var precio = String(c.precio || '').trim();
+            row.appendChild(el('span', 'text-xl font-bold text-indigo-700',
+                precio ? (/^[\d.,]+$/.test(precio) ? '$' + precio : precio) : ''));
+            card.appendChild(row);
+
+            card.appendChild(el('p', 'text-gray-700 mt-4 text-sm flex-grow', c.descripcion || ''));
+
+            var link = el('a', 'mt-6 block w-full text-center bg-indigo-600 text-white font-bold py-3 px-4 rounded-lg hover:bg-indigo-700 transition-colors', 'Agendar clase');
+            link.href = httpsUrl(c.bookingUrl) || '#';
+            link.target = '_blank';
+            link.rel = 'noopener';
+            card.appendChild(link);
+            return card;
+        }
+
+        function render(catalog) {
+            if (!catalog || !catalog.ok || !Array.isArray(catalog.classes)) return false;
+
+            var teachers = document.getElementById('teachers-list');
+            var classes = document.getElementById('classes-grid');
+
+            teachers.replaceChildren.apply(teachers,
+                (catalog.teachers || []).map(function (t) { return teacherBlock(t, 'w-16 h-16'); }));
+
+            if (catalog.classes.length) {
+                classes.replaceChildren.apply(classes, catalog.classes.map(classCard));
+            } else {
+                classes.replaceChildren(el('p', 'text-gray-600 md:col-span-2 lg:col-span-3',
+                    'Por el momento no hay clases disponibles. Escríbenos por WhatsApp y con gusto te ayudamos.'));
+            }
+            return true;
+        }
+
+        // Pinta de inmediato la última versión conocida y luego la actualiza.
+        try { render(JSON.parse(localStorage.getItem(CACHE_KEY))); } catch (e) {}
+
+        fetch(API + '?action=catalog')
+            .then(function (r) { return r.json(); })
+            .then(function (catalog) {
+                if (render(catalog)) {
+                    try { localStorage.setItem(CACHE_KEY, JSON.stringify(catalog)); } catch (e) {}
+                }
+            })
+            .catch(function () { /* se queda lo que ya estaba en pantalla */ });
+    })();
+    </script>
 
 </body>
 </html>

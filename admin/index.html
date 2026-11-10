@@ -1,0 +1,619 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <title>Administración — ULAL Clases</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        dialog::backdrop { background: rgba(17, 24, 39, .55); }
+        .field { width: 100%; border: 1px solid #d1d5db; border-radius: .5rem; padding: .55rem .75rem; font-size: .875rem; background: #fff; }
+        .field:focus { outline: 2px solid #4f46e5; outline-offset: 1px; border-color: #4f46e5; }
+        .label { display: block; font-size: .8rem; font-weight: 600; color: #374151; margin-bottom: .3rem; }
+        .hint { font-size: .75rem; color: #6b7280; margin-top: .3rem; }
+        .btn { font-weight: 600; font-size: .875rem; padding: .55rem 1rem; border-radius: .5rem; transition: background-color .15s; }
+        .btn-primary { background: #4f46e5; color: #fff; }
+        .btn-primary:hover { background: #4338ca; }
+        .btn-ghost { background: #f3f4f6; color: #374151; }
+        .btn-ghost:hover { background: #e5e7eb; }
+        .btn-danger { background: #fee2e2; color: #b91c1c; }
+        .btn-danger:hover { background: #fecaca; }
+        .btn:disabled { opacity: .5; cursor: wait; }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-900 min-h-screen">
+
+    <!-- Falta configurar -->
+    <section id="view-setup" class="hidden max-w-lg mx-auto p-6 mt-16 bg-white rounded-lg shadow">
+        <h1 class="text-xl font-bold">Falta un paso</h1>
+        <p class="text-sm text-gray-600 mt-2">Pega la URL de la aplicación web del Apps Script en el archivo <code class="bg-gray-100 px-1 rounded">config.js</code> y vuelve a publicar el sitio.</p>
+    </section>
+
+    <!-- Login -->
+    <section id="view-login" class="hidden max-w-sm mx-auto p-6 mt-16 bg-white rounded-lg shadow">
+        <h1 class="text-xl font-bold">Administración de clases</h1>
+        <p class="text-sm text-gray-600 mt-1">Universidad en Línea América Latina</p>
+        <form id="login-form" class="mt-6">
+            <label class="label" for="login-password">Contraseña</label>
+            <input id="login-password" class="field" type="password" autocomplete="current-password" required>
+            <p id="login-error" class="text-sm text-red-700 mt-2 hidden"></p>
+            <button class="btn btn-primary w-full mt-4" type="submit">Entrar</button>
+        </form>
+    </section>
+
+    <!-- Panel -->
+    <section id="view-app" class="hidden">
+        <header class="bg-indigo-700 text-white">
+            <div class="max-w-5xl mx-auto px-4 sm:px-6 py-4 flex flex-wrap items-center justify-between gap-3">
+                <h1 class="text-lg font-bold">ULAL · Administración de clases</h1>
+                <div class="flex gap-2">
+                    <a href="../" target="_blank" rel="noopener" class="btn bg-indigo-600 hover:bg-indigo-500">Ver página</a>
+                    <button id="btn-logout" class="btn bg-indigo-600 hover:bg-indigo-500">Salir</button>
+                </div>
+            </div>
+        </header>
+
+        <main class="max-w-5xl mx-auto px-4 sm:px-6 py-6">
+
+            <div id="pending-banner" class="hidden mb-6 border border-amber-300 bg-amber-50 text-amber-900 rounded-lg p-4 text-sm"></div>
+
+            <div class="flex flex-wrap items-center justify-between gap-3 border-b border-gray-200">
+                <nav class="flex gap-6">
+                    <button data-tab="classes" class="tab pb-3 font-semibold text-sm border-b-2">Clases</button>
+                    <button data-tab="teachers" class="tab pb-3 font-semibold text-sm border-b-2">Maestros</button>
+                </nav>
+                <button id="btn-new" class="btn btn-primary mb-2"></button>
+            </div>
+
+            <div id="list" class="mt-4 space-y-3"></div>
+        </main>
+    </section>
+
+    <!-- Formulario de clase -->
+    <dialog id="dlg-class" class="rounded-lg shadow-xl p-0 w-full max-w-xl">
+        <form id="form-class" class="p-6">
+            <h2 id="class-title" class="text-lg font-bold"></h2>
+            <p id="class-origin" class="hint hidden">Esta clase se detectó sola a partir de una reserva en Google Calendar.</p>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-4">
+                <div class="sm:col-span-2">
+                    <label class="label" for="c-nombre">Nombre que ve el alumno</label>
+                    <input id="c-nombre" class="field" maxlength="120" required>
+                </div>
+                <div class="sm:col-span-2">
+                    <label class="label" for="c-teacher">Maestro</label>
+                    <select id="c-teacher" class="field"></select>
+                </div>
+                <div class="sm:col-span-2">
+                    <label class="label" for="c-url">Enlace de reserva de Google Calendar</label>
+                    <input id="c-url" class="field" type="url" placeholder="https://calendar.app.google/…">
+                    <p class="hint">En Calendar: abre la página de reserva → Compartir → copia el enlace.</p>
+                </div>
+                <div>
+                    <label class="label" for="c-precio">Precio</label>
+                    <input id="c-precio" class="field" maxlength="20" placeholder="299">
+                </div>
+                <div>
+                    <label class="label" for="c-detalle">Duración / modalidad</label>
+                    <input id="c-detalle" class="field" maxlength="80" placeholder="1 hrs | Videoconferencia">
+                </div>
+                <div class="sm:col-span-2">
+                    <label class="label" for="c-descripcion">Descripción</label>
+                    <textarea id="c-descripcion" class="field" rows="3" maxlength="600"></textarea>
+                </div>
+                <div>
+                    <label class="label" for="c-estado">Estado</label>
+                    <select id="c-estado" class="field">
+                        <option value="activa">Publicada (visible en la página)</option>
+                        <option value="pendiente">Pendiente (aún no se muestra)</option>
+                        <option value="oculta">Oculta (solo para avisos)</option>
+                    </select>
+                </div>
+                <div>
+                    <label class="label" for="c-orden">Orden en la página</label>
+                    <input id="c-orden" class="field" type="number" step="1" placeholder="10">
+                </div>
+            </div>
+
+            <details class="mt-4">
+                <summary class="text-sm font-semibold text-indigo-700 cursor-pointer">Cómo se reconoce en Google Calendar</summary>
+                <div class="mt-3 space-y-4">
+                    <div>
+                        <label class="label" for="c-caltitle">Título de la página de reserva en Calendar</label>
+                        <input id="c-caltitle" class="field" maxlength="200">
+                        <p class="hint">Debe coincidir con el título que tiene la página de reserva. Con esto el sistema sabe a qué maestro avisar. Si lo dejas vacío se usa el nombre de la clase.</p>
+                    </div>
+                    <div>
+                        <label class="label" for="c-aliases">Otros textos que también la identifican (separados por coma)</label>
+                        <input id="c-aliases" class="field" placeholder="matemáticas, ciencias experimentales">
+                    </div>
+                </div>
+            </details>
+
+            <p id="class-error" class="text-sm text-red-700 mt-4 hidden"></p>
+
+            <div class="flex justify-end gap-2 mt-6">
+                <button type="button" class="btn btn-ghost" data-close>Cancelar</button>
+                <button type="submit" class="btn btn-primary">Guardar</button>
+            </div>
+        </form>
+    </dialog>
+
+    <!-- Formulario de maestro -->
+    <dialog id="dlg-teacher" class="rounded-lg shadow-xl p-0 w-full max-w-xl">
+        <form id="form-teacher" class="p-6">
+            <h2 id="teacher-title" class="text-lg font-bold"></h2>
+
+            <div class="grid grid-cols-1 sm:grid-cols-3 gap-4 mt-4">
+                <div>
+                    <label class="label" for="t-titulo">Título</label>
+                    <input id="t-titulo" class="field" maxlength="20" placeholder="Lic. / Ing. / Mtra.">
+                </div>
+                <div class="sm:col-span-2">
+                    <label class="label" for="t-nombre">Nombre completo</label>
+                    <input id="t-nombre" class="field" maxlength="80" required>
+                </div>
+                <div class="sm:col-span-3">
+                    <label class="label" for="t-telefono">WhatsApp</label>
+                    <input id="t-telefono" class="field" inputmode="tel" placeholder="614 123 4567" required>
+                    <p class="hint">A este número llegan los avisos de reserva y los recordatorios. No se muestra en la página.</p>
+                </div>
+                <div class="sm:col-span-3">
+                    <label class="label" for="t-area">Área que se muestra bajo su nombre</label>
+                    <input id="t-area" class="field" maxlength="80" placeholder="Preparatoria">
+                </div>
+                <div class="sm:col-span-3">
+                    <label class="label" for="t-foto">Enlace de la foto</label>
+                    <input id="t-foto" class="field" type="url" placeholder="https://res.cloudinary.com/…">
+                    <p class="hint">Opcional. Sin foto se muestran sus iniciales.</p>
+                </div>
+                <label class="sm:col-span-3 flex items-center gap-2 text-sm">
+                    <input id="t-activo" type="checkbox" class="h-4 w-4">
+                    Activo (recibe avisos y sus clases se muestran)
+                </label>
+            </div>
+
+            <p id="teacher-error" class="text-sm text-red-700 mt-4 hidden"></p>
+
+            <div class="flex justify-end gap-2 mt-6">
+                <button type="button" class="btn btn-ghost" data-close>Cancelar</button>
+                <button type="submit" class="btn btn-primary">Guardar</button>
+            </div>
+        </form>
+    </dialog>
+
+    <!-- Confirmación -->
+    <dialog id="dlg-confirm" class="rounded-lg shadow-xl p-0 w-full max-w-md">
+        <div class="p-6">
+            <h2 id="confirm-title" class="text-lg font-bold"></h2>
+            <p id="confirm-text" class="text-sm text-gray-600 mt-2"></p>
+            <div class="flex justify-end gap-2 mt-6">
+                <button class="btn btn-ghost" data-close>Cancelar</button>
+                <button id="confirm-ok" class="btn btn-danger">Eliminar</button>
+            </div>
+        </div>
+    </dialog>
+
+    <div id="toast" class="hidden fixed bottom-4 left-1/2 -translate-x-1/2 px-4 py-3 rounded-lg shadow-lg text-sm text-white max-w-sm"></div>
+
+    <script src="../config.js"></script>
+    <script>
+    (function () {
+        'use strict';
+
+        var API = (window.ULAL_API_URL || '').trim();
+        var TOKEN_KEY = 'ulal_admin_token';
+        var state = { teachers: [], classes: [], tab: 'classes', editingId: null };
+
+        var $ = function (id) { return document.getElementById(id); };
+
+        function el(tag, className, text) {
+            var node = document.createElement(tag);
+            if (className) node.className = className;
+            if (text != null) node.textContent = text;
+            return node;
+        }
+
+        function show(view) {
+            ['view-setup', 'view-login', 'view-app'].forEach(function (id) {
+                $(id).classList.toggle('hidden', id !== view);
+            });
+        }
+
+        function getToken() {
+            try { return sessionStorage.getItem(TOKEN_KEY) || ''; } catch (e) { return state.token || ''; }
+        }
+
+        function setToken(token) {
+            state.token = token;
+            try {
+                if (token) sessionStorage.setItem(TOKEN_KEY, token);
+                else sessionStorage.removeItem(TOKEN_KEY);
+            } catch (e) {}
+        }
+
+        var toastTimer;
+        function toast(message, isError) {
+            var t = $('toast');
+            t.textContent = message;
+            t.className = 'fixed bottom-4 left-1/2 -translate-x-1/2 px-4 py-3 rounded-lg shadow-lg text-sm text-white max-w-sm ' +
+                (isError ? 'bg-red-700' : 'bg-gray-900');
+            clearTimeout(toastTimer);
+            toastTimer = setTimeout(function () { t.classList.add('hidden'); }, 4500);
+        }
+
+        // text/plain evita el preflight CORS, que Apps Script no responde.
+        function api(action, payload) {
+            var body = Object.assign({ action: action, token: getToken() }, payload || {});
+
+            return fetch(API, {
+                method: 'POST',
+                headers: { 'Content-Type': 'text/plain;charset=utf-8' },
+                body: JSON.stringify(body)
+            })
+            .then(function (r) { return r.json(); })
+            .catch(function () {
+                throw new Error('No se pudo conectar con el servidor. Revisa tu conexión.');
+            })
+            .then(function (res) {
+                if (res && res.ok) return res;
+                if (res && res.code === 'auth') {
+                    setToken('');
+                    show('view-login');
+                }
+                throw new Error((res && res.error) || 'Ocurrió un error.');
+            });
+        }
+
+        function busy(form, on) {
+            Array.prototype.forEach.call(form.querySelectorAll('button'), function (b) { b.disabled = on; });
+        }
+
+        function setError(id, message) {
+            $(id).textContent = message || '';
+            $(id).classList.toggle('hidden', !message);
+        }
+
+        function teacherById(id) {
+            return state.teachers.filter(function (t) { return t.id === id; })[0] || null;
+        }
+
+        function teacherName(t) {
+            return ((t.titulo || '') + ' ' + (t.nombre || '')).trim();
+        }
+
+        function applyData(data) {
+            state.teachers = data.teachers || [];
+            state.classes = data.classes || [];
+            render();
+        }
+
+        /* ---------- Listas ---------- */
+
+        var ESTADO = {
+            activa: ['Publicada', 'bg-green-100 text-green-800'],
+            pendiente: ['Pendiente', 'bg-amber-100 text-amber-800'],
+            oculta: ['Oculta', 'bg-gray-200 text-gray-700']
+        };
+
+        function badge(text, cls) {
+            return el('span', 'inline-block text-xs font-semibold px-2 py-0.5 rounded-full ' + cls, text);
+        }
+
+        function rowActions(onEdit, onDelete) {
+            var box = el('div', 'flex gap-2 flex-shrink-0');
+            var edit = el('button', 'btn btn-ghost', 'Editar');
+            var del = el('button', 'btn btn-danger', 'Eliminar');
+            edit.addEventListener('click', onEdit);
+            del.addEventListener('click', onDelete);
+            box.appendChild(edit);
+            box.appendChild(del);
+            return box;
+        }
+
+        function classRow(c) {
+            var row = el('div', 'bg-white rounded-lg shadow-sm border border-gray-200 p-4 flex flex-wrap items-center justify-between gap-3');
+            var info = el('div', 'min-w-0');
+            var title = el('div', 'flex flex-wrap items-center gap-2');
+            title.appendChild(el('span', 'font-semibold', c.nombre));
+            var est = ESTADO[c.estado] || ESTADO.pendiente;
+            title.appendChild(badge(est[0], est[1]));
+            info.appendChild(title);
+
+            var teacher = teacherById(c.teacherId);
+            var faltan = [];
+            if (!teacher) faltan.push('maestro');
+            if (!c.bookingUrl && c.estado !== 'oculta') faltan.push('enlace de reserva');
+
+            var sub = teacher ? teacherName(teacher) : 'Sin maestro asignado';
+            if (teacher && teacher.activo === false) sub += ' (inactivo)';
+            if (c.precio) sub += ' · $' + c.precio;
+            info.appendChild(el('p', 'text-sm text-gray-600 mt-1', sub));
+
+            if (faltan.length && c.estado !== 'activa') {
+                info.appendChild(el('p', 'text-xs text-amber-700 mt-1', 'Falta: ' + faltan.join(' y ')));
+            }
+
+            row.appendChild(info);
+            row.appendChild(rowActions(
+                function () { openClass(c); },
+                function () {
+                    confirmDelete('¿Eliminar la clase?',
+                        '"' + c.nombre + '" dejará de mostrarse. Si su página de reserva sigue activa en Calendar, la próxima reserva la volverá a crear como pendiente.',
+                        function () { return api('class.delete', { id: c.id }); });
+                }
+            ));
+            return row;
+        }
+
+        function teacherRow(t) {
+            var row = el('div', 'bg-white rounded-lg shadow-sm border border-gray-200 p-4 flex flex-wrap items-center justify-between gap-3');
+            var left = el('div', 'flex items-center gap-3 min-w-0');
+
+            if (/^https:\/\//i.test(t.foto || '')) {
+                var img = el('img', 'w-12 h-12 rounded-full object-cover flex-shrink-0');
+                img.src = t.foto;
+                img.alt = '';
+                left.appendChild(img);
+            } else {
+                var initials = (t.nombre || '?').split(/\s+/).slice(0, 2)
+                    .map(function (p) { return p.charAt(0); }).join('').toUpperCase();
+                left.appendChild(el('div', 'w-12 h-12 rounded-full bg-indigo-100 text-indigo-700 font-bold flex items-center justify-center flex-shrink-0', initials));
+            }
+
+            var info = el('div', 'min-w-0');
+            var title = el('div', 'flex flex-wrap items-center gap-2');
+            title.appendChild(el('span', 'font-semibold', teacherName(t)));
+            if (t.activo === false) title.appendChild(badge('Inactivo', 'bg-gray-200 text-gray-700'));
+            info.appendChild(title);
+
+            var count = state.classes.filter(function (c) { return c.teacherId === t.id; }).length;
+            info.appendChild(el('p', 'text-sm text-gray-600 mt-1',
+                '+' + t.telefono + (t.area ? ' · ' + t.area : '') + ' · ' + count + (count === 1 ? ' clase' : ' clases')));
+            left.appendChild(info);
+            row.appendChild(left);
+
+            row.appendChild(rowActions(
+                function () { openTeacher(t); },
+                function () {
+                    confirmDelete('¿Eliminar a ' + t.nombre + '?',
+                        count
+                            ? 'Sus ' + count + ' clase(s) quedarán sin maestro y dejarán de mostrarse hasta que les asignes otro.'
+                            : 'Dejará de recibir avisos.',
+                        function () { return api('teacher.delete', { id: t.id }); });
+                }
+            ));
+            return row;
+        }
+
+        function render() {
+            var isClasses = state.tab === 'classes';
+
+            Array.prototype.forEach.call(document.querySelectorAll('.tab'), function (tab) {
+                var active = tab.dataset.tab === state.tab;
+                tab.classList.toggle('border-indigo-600', active);
+                tab.classList.toggle('text-indigo-700', active);
+                tab.classList.toggle('border-transparent', !active);
+                tab.classList.toggle('text-gray-500', !active);
+            });
+
+            $('btn-new').textContent = isClasses ? 'Nueva clase' : 'Nuevo maestro';
+
+            var pending = state.classes.filter(function (c) { return c.estado === 'pendiente'; });
+            var banner = $('pending-banner');
+            banner.classList.toggle('hidden', !pending.length);
+            if (pending.length) {
+                banner.textContent = (pending.length === 1
+                    ? 'Hay 1 clase pendiente: '
+                    : 'Hay ' + pending.length + ' clases pendientes: ') +
+                    pending.map(function (c) { return c.nombre; }).join(', ') +
+                    '. Asígnales maestro y enlace de reserva para publicarlas.';
+            }
+
+            var list = $('list');
+            var items = isClasses
+                ? state.classes.slice().sort(function (a, b) {
+                    return (a.estado === 'pendiente' ? 0 : 1) - (b.estado === 'pendiente' ? 0 : 1);
+                }).map(classRow)
+                : state.teachers.map(teacherRow);
+
+            if (!items.length) {
+                items = [el('p', 'text-sm text-gray-600 py-8 text-center',
+                    isClasses ? 'Todavía no hay clases.' : 'Todavía no hay maestros.')];
+            }
+
+            list.replaceChildren.apply(list, items);
+        }
+
+        /* ---------- Formularios ---------- */
+
+        function openClass(c) {
+            c = c || {};
+            state.editingId = c.id || null;
+            $('class-title').textContent = c.id ? 'Editar clase' : 'Nueva clase';
+            $('class-origin').classList.toggle('hidden', c.origen !== 'calendar');
+
+            var select = $('c-teacher');
+            select.replaceChildren(new Option('— Sin asignar —', ''));
+            state.teachers.forEach(function (t) {
+                select.appendChild(new Option(teacherName(t) + (t.activo === false ? ' (inactivo)' : ''), t.id));
+            });
+
+            $('c-nombre').value = c.nombre || '';
+            select.value = c.teacherId || '';
+            $('c-url').value = c.bookingUrl || '';
+            $('c-precio').value = c.id ? (c.precio || '') : '299';
+            $('c-detalle').value = c.id ? (c.detalle || '') : '1 hrs | Videoconferencia';
+            $('c-descripcion').value = c.descripcion || '';
+            $('c-estado').value = c.estado || 'activa';
+            $('c-orden').value = c.orden || '';
+            $('c-caltitle').value = c.calendarTitle || '';
+            $('c-aliases').value = (c.aliases || []).join(', ');
+            setError('class-error', '');
+            $('dlg-class').showModal();
+        }
+
+        function openTeacher(t) {
+            t = t || {};
+            state.editingId = t.id || null;
+            $('teacher-title').textContent = t.id ? 'Editar maestro' : 'Nuevo maestro';
+            $('t-titulo').value = t.titulo || '';
+            $('t-nombre').value = t.nombre || '';
+            $('t-telefono').value = t.telefono || '';
+            $('t-area').value = t.area || '';
+            $('t-foto').value = t.foto || '';
+            $('t-activo').checked = t.activo !== false;
+            setError('teacher-error', '');
+            $('dlg-teacher').showModal();
+        }
+
+        $('form-class').addEventListener('submit', function (ev) {
+            ev.preventDefault();
+            var form = ev.target;
+            var estado = $('c-estado').value;
+
+            // Con maestro y enlace ya no tiene sentido dejarla pendiente.
+            if (estado === 'pendiente' && $('c-teacher').value && $('c-url').value.trim()) {
+                estado = 'activa';
+            }
+
+            var clase = {
+                id: state.editingId,
+                nombre: $('c-nombre').value,
+                teacherId: $('c-teacher').value,
+                bookingUrl: $('c-url').value.trim(),
+                precio: $('c-precio').value,
+                detalle: $('c-detalle').value,
+                descripcion: $('c-descripcion').value,
+                estado: estado,
+                orden: $('c-orden').value,
+                calendarTitle: $('c-caltitle').value,
+                aliases: $('c-aliases').value
+            };
+
+            busy(form, true);
+            api('class.save', { clase: clase })
+                .then(function (res) {
+                    $('dlg-class').close();
+                    applyData(res.data);
+                    toast(res.result.estado === 'activa'
+                        ? 'Clase guardada y publicada.'
+                        : 'Clase guardada.');
+                })
+                .catch(function (err) { setError('class-error', err.message); })
+                .then(function () { busy(form, false); });
+        });
+
+        $('form-teacher').addEventListener('submit', function (ev) {
+            ev.preventDefault();
+            var form = ev.target;
+
+            var teacher = {
+                id: state.editingId,
+                titulo: $('t-titulo').value,
+                nombre: $('t-nombre').value,
+                telefono: $('t-telefono').value,
+                area: $('t-area').value,
+                foto: $('t-foto').value.trim(),
+                activo: $('t-activo').checked
+            };
+
+            busy(form, true);
+            api('teacher.save', { teacher: teacher })
+                .then(function (res) {
+                    $('dlg-teacher').close();
+                    applyData(res.data);
+                    toast('Maestro guardado.');
+                })
+                .catch(function (err) { setError('teacher-error', err.message); })
+                .then(function () { busy(form, false); });
+        });
+
+        var confirmAction = null;
+
+        function confirmDelete(title, text, action) {
+            $('confirm-title').textContent = title;
+            $('confirm-text').textContent = text;
+            confirmAction = action;
+            $('dlg-confirm').showModal();
+        }
+
+        $('confirm-ok').addEventListener('click', function () {
+            if (!confirmAction) return;
+            var button = $('confirm-ok');
+            button.disabled = true;
+            confirmAction()
+                .then(function (res) {
+                    applyData(res.data);
+                    toast('Eliminado.');
+                })
+                .catch(function (err) { toast(err.message, true); })
+                .then(function () {
+                    button.disabled = false;
+                    confirmAction = null;
+                    $('dlg-confirm').close();
+                });
+        });
+
+        Array.prototype.forEach.call(document.querySelectorAll('[data-close]'), function (button) {
+            button.addEventListener('click', function () { button.closest('dialog').close(); });
+        });
+
+        /* ---------- Navegación y sesión ---------- */
+
+        Array.prototype.forEach.call(document.querySelectorAll('.tab'), function (tab) {
+            tab.addEventListener('click', function () {
+                state.tab = tab.dataset.tab;
+                render();
+            });
+        });
+
+        $('btn-new').addEventListener('click', function () {
+            if (state.tab === 'classes') openClass(); else openTeacher();
+        });
+
+        $('btn-logout').addEventListener('click', function () {
+            api('logout').catch(function () {});
+            setToken('');
+            show('view-login');
+        });
+
+        function loadPanel() {
+            return api('admin.list').then(function (res) {
+                applyData(res.data);
+                show('view-app');
+            });
+        }
+
+        $('login-form').addEventListener('submit', function (ev) {
+            ev.preventDefault();
+            var form = ev.target;
+            setError('login-error', '');
+            busy(form, true);
+
+            api('login', { password: $('login-password').value })
+                .then(function (res) {
+                    setToken(res.token);
+                    $('login-password').value = '';
+                    return loadPanel();
+                })
+                .catch(function (err) { setError('login-error', err.message); })
+                .then(function () { busy(form, false); });
+        });
+
+        if (!API) {
+            show('view-setup');
+        } else if (getToken()) {
+            loadPanel().catch(function () { show('view-login'); });
+        } else {
+            show('view-login');
+        }
+    })();
+    </script>
+</body>
+</html>
