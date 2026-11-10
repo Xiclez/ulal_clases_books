@@ -22,6 +22,8 @@
  *   WA_ACCESS_TOKEN, WA_PHONE_NUMBER_ID   (obligatorias)
  *   ADMIN_PASSWORD                        (obligatoria para /admin)
  *   ADMIN_EMAIL        (opcional: aviso de clases pendientes)
+ *   CLOUDINARY_API_KEY, CLOUDINARY_API_SECRET  (para subir fotos
+ *       desde /admin; CLOUDINARY_CLOUD_NAME es opcional)
  *   WA_GRAPH_VERSION, WA_TEMPLATE_LANGS, META_RELAY_SECRET (opcionales)
  *******************************************************/
 
@@ -1030,6 +1032,10 @@ function handleAdminRequest_(body) {
       return { ok: true, data: loadCatalog_() };
     }
 
+    if (body.action === 'upload.sign') {
+      return { ok: true, upload: signCloudinaryUpload_() };
+    }
+
     // Las escrituras van una a la vez.
     const lock = LockService.getScriptLock();
 
@@ -1101,6 +1107,53 @@ function adminLogin_(password) {
 function isValidSession_(token) {
   if (!token || typeof token !== 'string' || token.length < 32) return false;
   return CacheService.getScriptCache().get('adm_tok_' + token) === '1';
+}
+
+/**
+ * FOTOS DE MAESTROS (Cloudinary)
+ *
+ * El panel sube la imagen directo a Cloudinary. Aquí solo se firma
+ * la subida, para que el API secret nunca salga del script.
+ * La foto se guarda recortada en cuadro (400×400) centrada en el rostro.
+ */
+const CLOUDINARY_DEFAULT_CLOUD = 'dn4m0kr7j';
+const CLOUDINARY_FOLDER = 'ulal/maestros';
+const CLOUDINARY_TRANSFORMATION = 'c_fill,g_face,w_400,h_400';
+
+function signCloudinaryUpload_() {
+  const props = PropertiesService.getScriptProperties();
+  const apiKey = props.getProperty('CLOUDINARY_API_KEY');
+  const apiSecret = props.getProperty('CLOUDINARY_API_SECRET');
+
+  if (!apiKey || !apiSecret) {
+    throw new Error(
+      'Para subir fotos falta configurar CLOUDINARY_API_KEY y ' +
+      'CLOUDINARY_API_SECRET en las propiedades del script.'
+    );
+  }
+
+  const params = {
+    folder: CLOUDINARY_FOLDER,
+    timestamp: String(Math.floor(Date.now() / 1000)),
+    transformation: CLOUDINARY_TRANSFORMATION
+  };
+
+  // Firma de Cloudinary: parámetros en orden alfabético + API secret, SHA-1.
+  const toSign = Object.keys(params).sort()
+    .map(k => k + '=' + params[k])
+    .join('&') + apiSecret;
+
+  const signature = Utilities
+    .computeDigest(Utilities.DigestAlgorithm.SHA_1, toSign, Utilities.Charset.UTF_8)
+    .map(b => ('0' + (b & 0xFF).toString(16)).slice(-2))
+    .join('');
+
+  return {
+    url: 'https://api.cloudinary.com/v1_1/' +
+      (props.getProperty('CLOUDINARY_CLOUD_NAME') || CLOUDINARY_DEFAULT_CLOUD) +
+      '/image/upload',
+    fields: Object.assign({ api_key: apiKey, signature: signature }, params)
+  };
 }
 
 /**
@@ -1253,6 +1306,9 @@ function TEST_CONFIGURATION() {
     hasAccessToken: !!props.getProperty('WA_ACCESS_TOKEN'),
     hasPhoneNumberId: !!props.getProperty('WA_PHONE_NUMBER_ID'),
     hasAdminPassword: !!props.getProperty('ADMIN_PASSWORD'),
+    hasCloudinaryKeys:
+      !!props.getProperty('CLOUDINARY_API_KEY') &&
+      !!props.getProperty('CLOUDINARY_API_SECRET'),
     adminEmail: props.getProperty('ADMIN_EMAIL') || '(sin configurar)',
     graphVersion: props.getProperty('WA_GRAPH_VERSION') || 'v23.0',
     hasRelaySecret: !!props.getProperty('META_RELAY_SECRET'),

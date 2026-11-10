@@ -15,6 +15,7 @@ Página de reservas autoadministrable.
 2. **Propiedades del script** (Configuración del proyecto → Propiedades de la secuencia de comandos):
    - `ADMIN_PASSWORD`: la contraseña del panel. Obligatoria.
    - `ADMIN_EMAIL`: correo que recibe el aviso cuando aparece una clase nueva. Opcional.
+   - `CLOUDINARY_API_KEY` y `CLOUDINARY_API_SECRET`: para subir fotos de maestros desde el panel. Están en Cloudinary → Settings → API Keys. Si la cuenta no es `dn4m0kr7j`, agrega también `CLOUDINARY_CLOUD_NAME`.
 3. **Carga inicial:** ejecuta `SEED_INITIAL_DATA` una vez. Copia al almacén los maestros y clases actuales. Pedirá autorizar el envío de correo.
 4. **Verifica:** ejecuta `TEST_BOOKING_PARSER` y revisa que cada reserva existente muestre su clase y maestro.
 5. **Publica:** Implementar → Administrar implementaciones → editar → *Nueva versión*. Ejecutar como: *yo*. Acceso: *cualquier usuario*. Copia la URL que termina en `/exec`.

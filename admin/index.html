@@ -168,9 +168,19 @@
                     <input id="t-area" class="field" maxlength="80" placeholder="Preparatoria">
                 </div>
                 <div class="sm:col-span-3">
-                    <label class="label" for="t-foto">Enlace de la foto</label>
-                    <input id="t-foto" class="field" type="url" placeholder="https://res.cloudinary.com/…">
-                    <p class="hint">Opcional. Sin foto se muestran sus iniciales.</p>
+                    <span class="label">Foto</span>
+                    <div class="flex items-center gap-4">
+                        <div id="t-preview" class="w-20 h-20 rounded-full bg-indigo-100 text-indigo-700 font-bold text-xl flex items-center justify-center overflow-hidden flex-shrink-0"></div>
+                        <div class="min-w-0">
+                            <div class="flex flex-wrap gap-2">
+                                <button type="button" id="t-foto-pick" class="btn btn-ghost">Subir foto</button>
+                                <button type="button" id="t-foto-remove" class="btn btn-ghost hidden">Quitar</button>
+                            </div>
+                            <p id="t-foto-status" class="hint">Opcional. Se recorta sola en círculo. Sin foto se muestran sus iniciales.</p>
+                        </div>
+                    </div>
+                    <input id="t-file" type="file" accept="image/jpeg,image/png,image/webp" class="hidden">
+                    <input id="t-foto" type="hidden">
                 </div>
                 <label class="sm:col-span-3 flex items-center gap-2 text-sm">
                     <input id="t-activo" type="checkbox" class="h-4 w-4">
@@ -466,7 +476,8 @@
             $('t-nombre').value = t.nombre || '';
             $('t-telefono').value = t.telefono || '';
             $('t-area').value = t.area || '';
-            $('t-foto').value = t.foto || '';
+            setPhoto(t.foto || '');
+            setPhotoStatus('');
             $('t-activo').checked = t.activo !== false;
             setError('teacher-error', '');
             $('dlg-teacher').showModal();
@@ -509,9 +520,99 @@
                 .then(function () { busy(form, false); });
         });
 
+        /* ---------- Foto del maestro (Cloudinary) ---------- */
+
+        var PHOTO_HINT = 'Opcional. Se recorta sola en círculo. Sin foto se muestran sus iniciales.';
+        var uploading = false;
+
+        function setPhotoStatus(message, isError) {
+            var status = $('t-foto-status');
+            status.textContent = message || PHOTO_HINT;
+            status.className = isError ? 'text-xs text-red-700 mt-1' : 'hint';
+        }
+
+        function setPhoto(url) {
+            var preview = $('t-preview');
+            $('t-foto').value = url;
+
+            if (/^https:\/\//i.test(url)) {
+                var img = el('img', 'w-full h-full object-cover');
+                img.src = url;
+                img.alt = '';
+                preview.replaceChildren(img);
+            } else {
+                var initials = ($('t-nombre').value || '?').trim().split(/\s+/).slice(0, 2)
+                    .map(function (p) { return p.charAt(0); }).join('').toUpperCase();
+                preview.replaceChildren(document.createTextNode(initials || '?'));
+            }
+
+            $('t-foto-pick').textContent = url ? 'Cambiar foto' : 'Subir foto';
+            $('t-foto-remove').classList.toggle('hidden', !url);
+        }
+
+        $('t-nombre').addEventListener('input', function () {
+            if (!$('t-foto').value) setPhoto('');
+        });
+
+        $('t-foto-pick').addEventListener('click', function () { $('t-file').click(); });
+
+        $('t-foto-remove').addEventListener('click', function () {
+            setPhoto('');
+            setPhotoStatus('');
+        });
+
+        $('t-file').addEventListener('change', function () {
+            var file = this.files && this.files[0];
+            this.value = ''; // permite volver a elegir el mismo archivo
+
+            if (!file) return;
+
+            if (!/^image\/(jpeg|png|webp)$/.test(file.type)) {
+                return setPhotoStatus('Elige una imagen JPG, PNG o WebP.', true);
+            }
+
+            if (file.size > 10 * 1024 * 1024) {
+                return setPhotoStatus('La imagen pesa más de 10 MB. Elige una más ligera.', true);
+            }
+
+            var form = $('form-teacher');
+            uploading = true;
+            busy(form, true);
+            setPhotoStatus('Subiendo foto…');
+
+            api('upload.sign')
+                .then(function (res) {
+                    var data = new FormData();
+                    Object.keys(res.upload.fields).forEach(function (key) {
+                        data.append(key, res.upload.fields[key]);
+                    });
+                    data.append('file', file);
+
+                    return fetch(res.upload.url, { method: 'POST', body: data })
+                        .then(function (r) { return r.json(); }, function () {
+                            throw new Error('No se pudo subir la foto. Revisa tu conexión.');
+                        });
+                })
+                .then(function (result) {
+                    if (!result || !/^https:\/\//i.test(result.secure_url || '')) {
+                        throw new Error('Cloudinary rechazó la foto' +
+                            (result && result.error && result.error.message ? ': ' + result.error.message : '.'));
+                    }
+                    setPhoto(result.secure_url);
+                    setPhotoStatus('Foto lista. Presiona Guardar para aplicarla.');
+                })
+                .catch(function (err) { setPhotoStatus(err.message, true); })
+                .then(function () {
+                    uploading = false;
+                    busy(form, false);
+                });
+        });
+
         $('form-teacher').addEventListener('submit', function (ev) {
             ev.preventDefault();
             var form = ev.target;
+
+            if (uploading) return;
 
             var teacher = {
                 id: state.editingId,
