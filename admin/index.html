@@ -164,6 +164,11 @@
                     <p class="hint">A este número llegan los avisos de reserva y los recordatorios. No se muestra en la página.</p>
                 </div>
                 <div class="sm:col-span-3">
+                    <label class="label" for="t-email">Correo</label>
+                    <input id="t-email" class="field" type="email" maxlength="120" placeholder="maestro@correo.com">
+                    <p class="hint">Aquí recibe el correo de cada clase agendada. No se muestra en la página.</p>
+                </div>
+                <div class="sm:col-span-3">
                     <label class="label" for="t-area">Área que se muestra bajo su nombre</label>
                     <input id="t-area" class="field" maxlength="80" placeholder="Preparatoria">
                 </div>
@@ -384,7 +389,7 @@
 
             var count = state.classes.filter(function (c) { return c.teacherId === t.id; }).length;
             info.appendChild(el('p', 'text-sm text-gray-600 mt-1',
-                '+' + t.telefono + (t.area ? ' · ' + t.area : '') + ' · ' + count + (count === 1 ? ' clase' : ' clases')));
+                '+' + t.telefono + ' · ' + (t.email || 'sin correo') + (t.area ? ' · ' + t.area : '') + ' · ' + count + (count === 1 ? ' clase' : ' clases')));
             left.appendChild(info);
             row.appendChild(left);
 
@@ -476,6 +481,7 @@
             $('t-nombre').value = t.nombre || '';
             $('t-telefono').value = t.telefono || '';
             $('t-area').value = t.area || '';
+            $('t-email').value = t.email || '';
             setPhoto(t.foto || '');
             setPhotoStatus('');
             $('t-activo').checked = t.activo !== false;
@@ -619,6 +625,7 @@
                 titulo: $('t-titulo').value,
                 nombre: $('t-nombre').value,
                 telefono: $('t-telefono').value,
+                email: $('t-email').value.trim(),
                 area: $('t-area').value,
                 foto: $('t-foto').value.trim(),
                 activo: $('t-activo').checked

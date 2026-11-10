@@ -22,6 +22,8 @@
  *   WA_ACCESS_TOKEN, WA_PHONE_NUMBER_ID   (obligatorias)
  *   ADMIN_PASSWORD                        (obligatoria para /admin)
  *   ADMIN_EMAIL        (opcional: aviso de clases pendientes)
+ *   EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, EMAILJS_PUBLIC_KEY,
+ *   EMAILJS_PRIVATE_KEY   (correo al maestro; ver emailjs/README.md)
  *   CLOUDINARY_API_KEY, CLOUDINARY_API_SECRET  (para subir fotos
  *       desde /admin; CLOUDINARY_CLOUD_NAME es opcional)
  *   WA_GRAPH_VERSION, WA_TEMPLATE_LANGS, META_RELAY_SECRET (opcionales)
@@ -50,6 +52,9 @@ const FLAGS = {
   reminder1hTeacher: 'wa_1h_teacher_sent',
   reminder10mStudent: 'wa_10m_student_sent',
   reminder10mTeacher: 'wa_10m_teacher_sent',
+  // Correo al maestro (EmailJS) y su tipo: 'nueva' o 'reagendada'.
+  emailTeacher: 'em_teacher_sent',
+  emailKind: 'em_kind',
   // Inicio del evento (epoch ms) con el que se enviaron los avisos.
   // Si cambia, la clase fue reagendada y los recordatorios se reinician.
   start: 'wa_start_ms'
@@ -186,6 +191,7 @@ function saveTeacher_(input) {
     nombre: cleanStr_(input.nombre, 80),
     titulo: cleanStr_(input.titulo, 20),
     telefono: normalizePhone_(input.telefono),
+    email: cleanStr_(input.email, 120).toLowerCase(),
     foto: cleanStr_(input.foto, 500),
     area: cleanStr_(input.area, 80),
     activo: input.activo !== false
@@ -195,6 +201,10 @@ function saveTeacher_(input) {
 
   if (teacher.telefono.length < 11 || teacher.telefono.length > 13) {
     throw new Error('El teléfono debe tener 10 dígitos (o incluir el código de país).');
+  }
+
+  if (teacher.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(teacher.email)) {
+    throw new Error('El correo del maestro no es válido.');
   }
 
   if (teacher.foto && !isHttpsUrl_(teacher.foto)) {
@@ -807,6 +817,9 @@ function processBookingEvent_(event, catalog) {
 
     if (privateProps[FLAGS.start]) {
       REMINDER_FLAGS.forEach(flag => { updates[flag] = 'false'; });
+      // El maestro recibe un correo nuevo con la hora actualizada.
+      updates[FLAGS.emailTeacher] = 'false';
+      updates[FLAGS.emailKind] = 'reagendada';
       console.log(`🔁 Clase reagendada: ${event.summary} → ${date} ${time}`);
     }
 
@@ -827,6 +840,88 @@ function processBookingEvent_(event, catalog) {
         TEMPLATES.bookingTeacher, teacher, student, date, time, meet
       )
     );
+
+    if (teacher.email && isEmailJsConfigured_()) {
+      const reagendada = privateProps[FLAGS.emailKind] === 'reagendada';
+
+      sendOnce_(
+        event, privateProps, FLAGS.emailTeacher,
+        `Correo enviado al maestro: ${teacher.email}`,
+        () => sendTeacherEmail_({
+          aviso: reagendada ? 'Clase reagendada' : 'Nueva clase agendada',
+          teacher: teacher,
+          student: student,
+          className: resolved.clase ? resolved.clase.nombre : baseTitle_(event.summary),
+          date: date,
+          time: time,
+          link: meet || event.htmlLink || ''
+        })
+      );
+    }
+  }
+}
+
+
+/*******************************************************
+ * CORREO AL MAESTRO (EmailJS)
+ *
+ * Una sola plantilla sirve para "Nueva clase agendada" y
+ * "Clase reagendada". El HTML está en emailjs/plantilla_maestro.html
+ *******************************************************/
+
+function getEmailJsConfig_() {
+  const props = PropertiesService.getScriptProperties();
+
+  return {
+    serviceId: props.getProperty('EMAILJS_SERVICE_ID'),
+    templateId: props.getProperty('EMAILJS_TEMPLATE_ID'),
+    publicKey: props.getProperty('EMAILJS_PUBLIC_KEY'),
+    privateKey: props.getProperty('EMAILJS_PRIVATE_KEY')
+  };
+}
+
+function isEmailJsConfigured_() {
+  const c = getEmailJsConfig_();
+  return !!(c.serviceId && c.templateId && c.publicKey && c.privateKey);
+}
+
+function sendTeacherEmail_(data) {
+  const config = getEmailJsConfig_();
+
+  const response = UrlFetchApp.fetch(
+    'https://api.emailjs.com/api/v1.0/email/send',
+    {
+      method: 'post',
+      contentType: 'application/json',
+      muteHttpExceptions: true,
+      payload: JSON.stringify({
+        service_id: config.serviceId,
+        template_id: config.templateId,
+        user_id: config.publicKey,
+        accessToken: config.privateKey,
+        template_params: {
+          to_email: data.teacher.email,
+          reply_to: data.student.email || '',
+          aviso: data.aviso,
+          teacher_name: data.teacher.nombre,
+          class_name: data.className,
+          student_name: data.student.nombre,
+          student_email: data.student.email || 'No proporcionado',
+          student_phone: data.student.telefono ? '+' + data.student.telefono : 'No proporcionado',
+          date: data.date,
+          time: data.time,
+          meet_link: data.link
+        }
+      })
+    }
+  );
+
+  const status = response.getResponseCode();
+
+  console.log(`EmailJS → ${data.teacher.email} → ${status}`);
+
+  if (status < 200 || status >= 300) {
+    throw new Error(`EmailJS error ${status}: ${response.getContentText()}`);
   }
 }
 
@@ -1306,6 +1401,8 @@ function TEST_CONFIGURATION() {
     hasAccessToken: !!props.getProperty('WA_ACCESS_TOKEN'),
     hasPhoneNumberId: !!props.getProperty('WA_PHONE_NUMBER_ID'),
     hasAdminPassword: !!props.getProperty('ADMIN_PASSWORD'),
+    hasEmailJs: isEmailJsConfigured_(),
+    maestrosSinCorreo: catalog.teachers.filter(t => !t.email).map(t => t.nombre),
     hasCloudinaryKeys:
       !!props.getProperty('CLOUDINARY_API_KEY') &&
       !!props.getProperty('CLOUDINARY_API_SECRET'),
@@ -1356,6 +1453,30 @@ function TEST_BOOKING_PARSER() {
       flags: getPrivateProps_(event)
     }, null, 2));
   }
+}
+
+/**
+ * Envía un correo de prueba con la plantilla de EmailJS
+ * a la dirección de ADMIN_EMAIL.
+ */
+function TEST_SEND_EMAIL() {
+  const to =
+    PropertiesService.getScriptProperties().getProperty('ADMIN_EMAIL');
+
+  if (!to) throw new Error('Configura ADMIN_EMAIL para recibir la prueba.');
+  if (!isEmailJsConfigured_()) throw new Error('Faltan propiedades EMAILJS_*.');
+
+  sendTeacherEmail_({
+    aviso: 'Nueva clase agendada',
+    teacher: { nombre: 'Maestro de Prueba', email: to },
+    student: { nombre: 'Alumno de Prueba', email: 'alumno@example.com', telefono: '526140000000' },
+    className: 'Clase de prueba',
+    date: '07/09/2026',
+    time: '19:00',
+    link: 'https://meet.google.com/xxx-xxxx-xxx'
+  });
+
+  console.log('✅ Correo de prueba enviado a ' + to);
 }
 
 /** Envía UNA plantilla al número indicado. */
